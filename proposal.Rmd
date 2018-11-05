@@ -1,0 +1,11 @@
+---
+title: "Data science final project proposal"
+author: "Yun He, Jun Lu, Chu Yu, Chunxiao Zhai, Haoran Hu"
+date: "2018-11-4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
