@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## The tentative project title
 Plasticizer and Children's Health in NHANES data
 ## The group members (names and UNIs)
-
+Chunxiao Zhai  UNI: cz2544
 ## The motivation for this project
 
 ## The intended final products
