@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## The tentative project title
-
+Plasticizer and Children's Health in NHANES data
 ## The group members (names and UNIs)
 
 ## The motivation for this project
