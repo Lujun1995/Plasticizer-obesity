@@ -12,7 +12,7 @@ The group members (names and UNIs)
 ----------------------------------
 
 Chunxiao Zhai UNI: cz2544
-Jun Lu UNI: jl5297
+Jun Lu UNI: jl5297 Haoran Hu UNI: hh2767
 
 The motivation for this project
 -------------------------------
@@ -27,10 +27,10 @@ The intended final products
 The anticipated data sources
 ----------------------------
 
+Our anticipated data source is several datasets on adolecent obesity provided by "Health data NY" website, which is an open data site maintained by the New York State Department of Health devoted to providing access to health data.[3](https://www.health.ny.gov/prevention/obesity/statistics_and_impact/student_weight_status_data.htm) We also found a dataset on NYC Opendata, which provides information of each school in New York city. In total, we got the following 4 datasets: 1. A dataset containing information on each school. This dataset shows sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6> 2. A dataset containing the prevalence of obesity among students in a certain county. The data is available for several years.
+
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
-
-We plan to focus on the effect of phthalates on human health. Specifically, we plan to analyze the linear relationship between urine phthalates level and BMI, and between urine phthalates level and blood pressure. When analyzing the relationships, we will try to exclude the effects of confounders that may bias the result. We plan to fit linear regression model between the two body index (BMI and blood pressure) and urine phthalates level respectively, and visualize the linear regressions. We also plan to visualize the trend of urine phthalates level change in recent years, and the distribution of urine phthalates level in different groups of people(e.g. groups by age, gender, etc).
 
 The planned timeline
 --------------------
