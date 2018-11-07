@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## The tentative project title
 
-Obesity in New York State School Children in NYC open data
+Obesity rate in New York State School Children in NYC open data
 
 ## The group members (names and UNIs)
 
@@ -20,13 +20,13 @@ Chu Yu UNI:cy2522
 
 ## The motivation for this project
 
-It has been long recognized that childhood overweight and obesity will continue to adulthood. Strongly associated with diabetis, cadiovascular disease, cancer, and mental social wellbeing, obesity is among top public health concerns in the US and around the world. We found several projects monitoring weight and obesity rate in schools, along with diest and behavior data. But the genetic background play a major role in the development of obesity along with diet and lifestyle. Researches have found that asian children and adults have significantly lower obesity rate than other races by current BMI criteria (overweight (BMI ≥25 kg/m2) or obese (BMI ≥30 kg/m2))  [1], however the risk to develop type 2 diabetis has been increasing among asians around the world. Researches suggest that to evaluate risk of disease, the BMI cut-off values should be lower for asians due to higher body fat percentage and higher percentage of visceral/peripheral distribution (overweight (BMI ≥22-23 kg/m2) or obese (BMI ≥25-28 kg/m2)) [2].
+It has been long recognized that childhood overweight and obesity will continue to adulthood. Strongly associated with diabetis, cadiovascular disease, cancer, and mental social wellbeing, obesity is among top public health concerns in the US and around the world. We found several projects monitoring weight and obesity rate in schools, along with diest and behavior data. Big efforts have been made to fight the obesity pandemic, the obesity rate in NYC school children have dropped. But is it a true drop or just demographic change? 
 
-Thus
+The genetic background play a major role in the development of obesity along with diet and lifestyle. Researches have found that asian children and adults have significantly lower obesity rate than other races by current BMI criteria (overweight (BMI ≥25 kg/m2) or obese (BMI ≥30 kg/m2))  [1], however the risk to develop type 2 diabetis has been increasing among asians around the world. Researches suggest that to evaluate risk of disease, the BMI cut-off values should be lower for asians due to higher body fat percentage and higher percentage of visceral/peripheral distribution (overweight (BMI ≥22-23 kg/m2) or obese (BMI ≥25-28 kg/m2)) [2].
 
-, we are interested in the topic of childhood obesity and try to explore risk factors of childhood obesity. Studies have found that prevalence of childhood obesity differs among different race groups. And where people live can affect their ability to make healthy choices, which also implies that prevalence of obesity can be influenced by a person’s community. 
+Thus, we are interested in examining if current decline in NYC school student obesity rate is affected by changes in school demographic features. If the misclassification of weight status in Asian population caused underdiagnosis or delayed detection of diabetis, and the potiential loss caused by this problem.
 
-
+[1] https://www.cdc.gov/nchs/products/databriefs/db288.htm
 [2] http://care.diabetesjournals.org/content/38/1/150
 ## The intended final products
 
@@ -47,18 +47,15 @@ Our anticipated data source is several datasets on adolecent obesity provided by
 3. A dataset showing location of each school.link: https://data.cityofnewyork.us/Education/2017-2018-School-Locations/p6h4-mpyy
 
 [3] https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6
->>>>>>> b9b751ca09f86e3b4c65a065494430a122518a49
-=======
-https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6
->>>>>>> 4ebcc04fe427da21e54c03e515ed991e7dfdafc6
+
 
 ## The planned analyses / visualizations / coding challenges
 
 We plan to focus on three main problems:
 
-1. find the tendency of the percentages of obesity and overweight in different schools over years
+1. find the tendency of the percentages of obesity and overweight in different schools over years with adjustification of race
 2. visualize the location and corresponding obesity percentage on the map 
-3. find the association between obesity and other factors(sugar drinking, race, exercise and so on) among students
+3. find the association between obesity and other factors(sugar drinks, exercise and so on) among students
 
 
 ## The planned timeline
