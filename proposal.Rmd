@@ -26,6 +26,7 @@ Yun He         UNI: yh3094
 ## The anticipated data sources
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 The National Health and Nutrition Examination Survey (NHANES) is a biannual, nationally representative survey of the noninstitutionalized US population administered by the National Centers for Health Statistics (NCHS) of the Centers for Disease Control and Prevention (CDC).
 
 =======
@@ -33,6 +34,9 @@ As the increasing mount of plastic products in our everyday life and food indust
 >>>>>>> 9d6d3db6a01930fb1d5d29764e5078da7769356e
 =======
 >>>>>>> e7275eddacb5c6fea1cddf96b166def17d068b89
+=======
+https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6
+>>>>>>> 4ebcc04fe427da21e54c03e515ed991e7dfdafc6
 
 ## The planned analyses / visualizations / coding challenges
 
