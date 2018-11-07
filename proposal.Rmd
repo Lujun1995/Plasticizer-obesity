@@ -20,14 +20,15 @@ Chu Yu UNI:cy2522
 
 ## The motivation for this project
 
-It has been long recognized that childhood overweight and obesity will continue to adulthood. Strongly associated with diabetis, cadiovascular disease, cancer, and mental social wellbeing, obesity is among top public health concerns in the US and around the world. We found several projects monitoring weight and obesity rate in schools, along with diest and behavior data. Big efforts have been made to fight the obesity pandemic, the obesity rate in NYC school children have dropped. But is it a true drop or just demographic change? 
+It has been long recognized that childhood overweight and obesity will continue to adulthood. Strongly associated with diabetes, cardiovascular disease, cancer, and mental social wellbeing, obesity is among top public health concerns in the US and around the world. We found several projects monitoring weight and obesity rate in schools, along with diets and behavior data. Big efforts have been made to fight the obesity pandemic, the obesity rate in NYC school children have dropped. But is it a true drop or just demographic change? 
 
-The genetic background play a major role in the development of obesity along with diet and lifestyle. Researches have found that asian children and adults have significantly lower obesity rate than other races by current BMI criteria (overweight (BMI ≥25 kg/m2) or obese (BMI ≥30 kg/m2))  [1], however the risk to develop type 2 diabetis has been increasing among asians around the world. Researches suggest that to evaluate risk of disease, the BMI cut-off values should be lower for asians due to higher body fat percentage and higher percentage of visceral/peripheral distribution (overweight (BMI ≥22-23 kg/m2) or obese (BMI ≥25-28 kg/m2)) [2].
+The genetic background play a major role in the development of obesity along with diet and lifestyle. Researches have found that asian children and adults have significantly lower obesity rate than other races by current BMI criteria (overweight (BMI ≥25 kg/m2) or obese (BMI ≥30 kg/m2))  [1], however the risk to develop type 2 diabetes has been increasing among asians around the world. Researches suggest that to evaluate risk of disease, the BMI cut-off values should be lower for asians due to higher body fat percentage and higher percentage of visceral/peripheral distribution (overweight (BMI ≥22-23 kg/m2) or obese (BMI ≥25-28 kg/m2)) [2].
 
-Thus, we are interested in examining if current decline in NYC school student obesity rate is affected by changes in school demographic features. If the misclassification of weight status in Asian population caused underdiagnosis or delayed detection of diabetis, and the potiential loss caused by this problem.
+Thus, we are interested in examining if current decline in NYC school student obesity rate is affected by changes in school demographic features. If the misclassification of weight status in Asian population caused under-diagnosis or delayed detection of diabetes, and the potential loss caused by this problem.
 
 [1] https://www.cdc.gov/nchs/products/databriefs/db288.htm
 [2] http://care.diabetesjournals.org/content/38/1/150
+
 ## The intended final products
 
 In the dataset, we expect to establish a map of the obesity proportion in different schools in New York city. From over three different dataset , we can know information including the health situation of students, the scores of the school, the school’s geographical data and so on. So we are intended to utilize several plots to describe the obesity situation in students in schools:
