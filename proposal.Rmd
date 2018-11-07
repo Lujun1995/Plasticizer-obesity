@@ -24,10 +24,12 @@ It has been long recognized that childhood overweight and obesity will continue 
 
 The genetic background play a major role in the development of obesity along with diet and lifestyle. Researches have found that asian children and adults have significantly lower obesity rate than other races by current BMI criteria (overweight (BMI ≥25 kg/m2) or obese (BMI ≥30 kg/m2))  [1], however the risk to develop type 2 diabetes has been increasing among asians around the world. Researches suggest that to evaluate risk of disease, the BMI cut-off values should be lower for asians due to higher body fat percentage and higher percentage of visceral/peripheral distribution (overweight (BMI ≥22-23 kg/m2) or obese (BMI ≥25-28 kg/m2)) [2].
 
-Thus, we are interested in examining if current decline in NYC school student obesity rate is affected by changes in school demographic features. If the misclassification of weight status in Asian population caused under-diagnosis or delayed detection of diabetes, and the potential loss caused by this problem.
+Thus, we are interested in examining if current decline in NYC school student obesity rate is affected by changes in school demographic features [3]. If the misclassification of weight status in Asian population caused under-diagnosis or delayed detection of diabetes, and the potential loss caused by this problem.
 
 [1] https://www.cdc.gov/nchs/products/databriefs/db288.htm
 [2] http://care.diabetesjournals.org/content/38/1/150
+[3] https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4410367/
+[4] https://www.apiahf.org/resource/obesity-and-overweight-among-asian-american-children-and-adolescents/
 
 ## The intended final products
 
@@ -44,10 +46,9 @@ Our anticipated data source is several datasets on adolecent obesity provided by
 1. A school demographic dataset. This dataset shows information of students such as sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6> 
 
 2. A dataset containing the prevalence of obesity among students in a certain county.
+<https://www.health.ny.gov/prevention/obesity/statistics_and_impact/student_weight_status_data.htm>
 
-3. A dataset showing location of each school.link: https://data.cityofnewyork.us/Education/2017-2018-School-Locations/p6h4-mpyy
-
-[3] https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6
+3. A dataset showing location of each school.link: <https://data.cityofnewyork.us/Education/2017-2018-School-Locations/p6h4-mpyy>
 
 
 ## The planned analyses / visualizations / coding challenges
