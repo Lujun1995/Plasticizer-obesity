@@ -24,6 +24,7 @@ Yun He         UNI: yh3094
 ## The intended final products
 
 ## The anticipated data sources
+https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6
 
 ## The planned analyses / visualizations / coding challenges
 
