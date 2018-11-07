@@ -12,7 +12,7 @@ The group members (names and UNIs)
 ----------------------------------
 
 Chunxiao Zhai UNI: cz2544
-Jun Lu UNI: jl5297
+Jun Lu UNI: jl5297 Haoran Hu UNI: hh2767
 
 The motivation for this project
 -------------------------------
@@ -30,7 +30,11 @@ The anticipated data sources
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
 
-We plan to focus on the effect of phthalates on human health. Specifically, we plan to analyze the linear relationship between urine phthalates level and BMI, and between urine phthalates level and blood pressure. When analyzing the relationships, we will try to exclude the effects of confounders that may bias the result. We plan to fit linear regression model between the two body index (BMI and blood pressure) and urine phthalates level respectively, and visualize the linear regressions. We also plan to visualize the trend of urine phthalates level change in recent years, and the distribution of urine phthalates level in different groups of people(e.g. groups by age, gender, etc).
+We plan to focus on three main problems:
+
+1.  find the tendency of the percentages of obesity and overweight in different schools over years
+2.  visualize the location and corresponding obesity percentage on the map
+3.  find the association between obesity and other factors(sugar drinking, race, exercise and so on) among students
 
 The planned timeline
 --------------------
