@@ -29,6 +29,12 @@ As the increasing mount of plastic products in our everyday life and food indust
 2:  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3365860/
 ## The planned analyses / visualizations / coding challenges
 
+We plan to focus on three main problems:
+
+1. find the tendency of the percentages of obesity and overweight in different schools over years
+2. visualize the location and corresponding obesity percentage on the map 
+3. find the association between obesity and other factors(sugar drinking, race, exercise and so on) among students
+
 
 ## The planned timeline
 Date                  | Plan                        

@@ -32,6 +32,15 @@ Our anticipated data source is several datasets on adolecent obesity provided by
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
 
+<<<<<<< HEAD
+=======
+We plan to focus on three main problems:
+
+1.  find the tendency of the percentages of obesity and overweight in different schools over years
+2.  visualize the location and corresponding obesity percentage on the map
+3.  find the association between obesity and other factors(sugar drinking, race, exercise and so on) among students
+
+>>>>>>> 839d1a7c25e0022953485b2bb7710502852b6fc5
 The planned timeline
 --------------------
 
