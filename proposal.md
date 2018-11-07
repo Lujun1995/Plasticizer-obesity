@@ -23,6 +23,7 @@ The intended final products
 The anticipated data sources
 ----------------------------
 
+<<<<<<< HEAD
 Our anticipated data source is several datasets on adolecent obesity provided by "Health data NY" website, which is an open data site maintained by the New York State Department of Health devoted to providing access to health data.\[3\] We also found a dataset on NYC Opendata, which provides information of each school in New York city. In total, we got the following 4 datasets:
 
 1.  A school demographic dataset. This dataset shows information of students such as sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6>
@@ -33,6 +34,8 @@ Our anticipated data source is several datasets on adolecent obesity provided by
 
 \[3\] <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6>
 
+=======
+>>>>>>> 4ebcc04fe427da21e54c03e515ed991e7dfdafc6
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
 
