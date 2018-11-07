@@ -23,6 +23,12 @@ As the increasing mount of plastic products in our everyday life and food indust
 
 The intended final products
 ---------------------------
+In the dataset, we expect to establish a map of the obesity proportion in different schools in New York city. From over three different dataset , we can know information including the health situation of students, the scores of the school, the school’s geographical data and so on. So we are intended to utilize several plots to describe the obesity situation in students in schools:
+
+First, we plan to build a shinny map to better describe the geographical distribution of the schools and their obesity proportion. Since we also have the detailed information about the students’ race, family status, sex and other factors, we can also make a plot about association of students obesity situation and the school meals, getting rid of the confounder like sex, race and age. Furthermore, there may be other connection between students’ obesity situation and school scores or the community over different years. All the visualization will be made in R.
+
+As is written above, we are intended to provide a product with diverse plots describing the over three dataset visually, and then build a website to present our results of exploring the data. According to the requirements, we will also submit our reports about the project. Hope finally we can present a clear and logic product to interpret our results of the project.
+
 
 The anticipated data sources
 ----------------------------
