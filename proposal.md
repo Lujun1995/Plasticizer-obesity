@@ -33,15 +33,20 @@ As is written above, we are intended to provide a product with diverse plots des
 The anticipated data sources
 ----------------------------
 
+Our anticipated data source is several datasets on adolecent obesity provided by "Health data NY" website, which is an open data site maintained by the New York State Department of Health devoted to providing access to health data.[3](https://www.health.ny.gov/prevention/obesity/statistics_and_impact/student_weight_status_data.htm) We also found a dataset on NYC Opendata, which provides information of each school in New York city. In total, we got the following 4 datasets: 1. A dataset containing information on each school. This dataset shows sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6> 2. A dataset containing the prevalence of obesity among students in a certain county. The data is available for several years.
+
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
 
+<<<<<<< HEAD
+=======
 We plan to focus on three main problems:
 
 1.  find the tendency of the percentages of obesity and overweight in different schools over years
 2.  visualize the location and corresponding obesity percentage on the map
 3.  find the association between obesity and other factors(sugar drinking, race, exercise and so on) among students
 
+>>>>>>> 839d1a7c25e0022953485b2bb7710502852b6fc5
 The planned timeline
 --------------------
 
