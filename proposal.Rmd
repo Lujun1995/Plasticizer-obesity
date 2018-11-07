@@ -10,12 +10,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## The tentative project title
-Plasticizer and Children's Health in NHANES data
+Obesity in New York State School Children in NYC open data
 
 ## The group members (names and UNIs)
 Chunxiao Zhai  UNI: cz2544   
 Jun Lu         UNI: jl5297
 Haoran Hu      UNI: hh2767
+Yun He         UNI: yh3094
 
 ## The motivation for this project
 
@@ -24,14 +25,15 @@ Haoran Hu      UNI: hh2767
 
 ## The anticipated data sources
 <<<<<<< HEAD
+<<<<<<< HEAD
 The National Health and Nutrition Examination Survey (NHANES) is a biannual, nationally representative survey of the noninstitutionalized US population administered by the National Centers for Health Statistics (NCHS) of the Centers for Disease Control and Prevention (CDC).
 
 =======
 As the increasing mount of plastic products in our everyday life and food industry, plasticizers released from these products and their impacts on our health have brought up broad public concerns. Researches have suggested some small molecules can cross blood brain barrier[1], disrupt human endocrine system and neurological system even at extremely low level of exposure [2]. With the ubiquity of plastics a fact we will keep living with for a long time, how the plasticizers influence our health, especially the children, on which aspect and at what amount deserve special attention. NHANES data contain detailed blood and urine data of plasticizer and varies disease for several years. We want to explore this dataset and visualize the health impacts to concerning parents and children care givers, bring more direct attention and awareness to our over plasticized everyday life.
 >>>>>>> 9d6d3db6a01930fb1d5d29764e5078da7769356e
+=======
+>>>>>>> e7275eddacb5c6fea1cddf96b166def17d068b89
 
-1:  https://www.mdpi.com/1660-4601/14/9/1059
-2:  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3365860/
 ## The planned analyses / visualizations / coding challenges
 
 We plan to focus on three main problems:
