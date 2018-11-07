@@ -18,15 +18,15 @@ Jun Lu         UNI: jl5297
 Haoran Hu      UNI: hh2767
 
 ## The motivation for this project
-As the increasing mount of plastic products in our everyday life and food industry, plasticizers released from these products and their impacts on our health have brought up broad public concerns. Researches have suggested some small molecules can cross blood brain barrier[1], disrupt human endocrine system and neurological system even at extremely low level of exposure [2]. With the ubiquity of plastics a fact we will keep living with for a long time, how the plasticizers influence our health, especially the children, on which aspect and at what amount deserve special attention. NHANES data contain detailed blood and urine data of plasticizer and varies disease for several years. We want to explore this dataset and visualize the health impacts to concerning parents and children care givers, bring more direct attention and awareness to our over plasticized everyday life.
 
-1:  https://www.mdpi.com/1660-4601/14/9/1059
-2:  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3365860/
 
 ## The intended final products
 
 ## The anticipated data sources
+As the increasing mount of plastic products in our everyday life and food industry, plasticizers released from these products and their impacts on our health have brought up broad public concerns. Researches have suggested some small molecules can cross blood brain barrier[1], disrupt human endocrine system and neurological system even at extremely low level of exposure [2]. With the ubiquity of plastics a fact we will keep living with for a long time, how the plasticizers influence our health, especially the children, on which aspect and at what amount deserve special attention. NHANES data contain detailed blood and urine data of plasticizer and varies disease for several years. We want to explore this dataset and visualize the health impacts to concerning parents and children care givers, bring more direct attention and awareness to our over plasticized everyday life.
 
+1:  https://www.mdpi.com/1660-4601/14/9/1059
+2:  https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3365860/
 ## The planned analyses / visualizations / coding challenges
 
 
