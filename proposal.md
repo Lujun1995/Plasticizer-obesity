@@ -39,9 +39,15 @@ The anticipated data sources
 ----------------------------
 
 Our anticipated data source is several datasets on adolecent obesity provided by "Health data NY" website, which is an open data site maintained by the New York State Department of Health devoted to providing access to health data.\[3\] We also found a dataset on NYC Opendata, which provides information of each school in New York city. In total, we got the following datasets:
+<<<<<<< HEAD
+=======
 
-1.  A school demographic dataset. This dataset shows information of students such as sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6>
+1.A school demographic dataset. This dataset shows information of students such as sex ratio, race ratio, etc.link: <https://data.cityofnewyork.us/Education/2013-2018-Demographic-Snapshot-School/s52a-8aq6>
+>>>>>>> 46b3726f7d53f2e466f7b3da4c7973ee73904780
 
+2.Datasets containing the prevalence of obesity among students in a certain county. <https://www.health.ny.gov/prevention/obesity/statistics_and_impact/student_weight_status_data.htm> <https://health.data.ny.gov/Health/Student-Weight-Status-Category-Reporting-System-20/rygz-8yax>
+
+<<<<<<< HEAD
 2.Datasets containing the prevalence of obesity among students in a certain county. <https://www.health.ny.gov/prevention/obesity/statistics_and_impact/student_weight_status_data.htm> <https://health.data.ny.gov/Health/Student-Weight-Status-Category-Reporting-System-20/rygz-8yax>
 
 1.  NYC community health datasets: <https://www1.nyc.gov/assets/doh/downloads/excel/episrv/2015_CHP_PUD.xlsx> <https://a816-healthpsi.nyc.gov/epiquery/>
@@ -49,6 +55,13 @@ Our anticipated data source is several datasets on adolecent obesity provided by
 2.  A dataset showing location of each school.link: <https://data.cityofnewyork.us/Education/2017-2018-School-Locations/p6h4-mpyy>
 
 3.  Cencus data about Asian population: <https://www.census.gov/prod/cen2010/briefs/c2010br-11.pdf>
+=======
+3.NYC community health datasets: <https://www1.nyc.gov/assets/doh/downloads/excel/episrv/2015_CHP_PUD.xlsx> <https://a816-healthpsi.nyc.gov/epiquery/>
+
+4.A dataset showing location of each school.link: <https://data.cityofnewyork.us/Education/2017-2018-School-Locations/p6h4-mpyy>
+
+5.Cencus data about Asian population: <https://www.census.gov/prod/cen2010/briefs/c2010br-11.pdf>
+>>>>>>> 46b3726f7d53f2e466f7b3da4c7973ee73904780
 
 The planned analyses / visualizations / coding challenges
 ---------------------------------------------------------
