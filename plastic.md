@@ -1,30 +1,15 @@
----
-title: "Plastic"
-author: "Yun He, Jun Lu, Chu Yu, Chunxiao Zhai, Haoran Hu"
-date: "11/21/2018"
-output: github_document
----
+Plastic
+================
+Yun He, Jun Lu, Chu Yu, Chunxiao Zhai, Haoran Hu
+11/21/2018
 
-```{r setup, include=FALSE}
-library(tidyverse)
-library(SASxport)
-knitr::opts_chunk$set(
-    fig.align = 'center',
-    fig.width = 7,
-    fig.asp = 0.6,
-    out.width = "80%",
-    message = F,
-    warning = F
- )
-theme_set(theme_bw() + theme(legend.position = "bottom"))
+Overview
+--------
 
+Read and clean the data
+-----------------------
 
-```
-
-## Overview
-
-## Read and clean the data
-```{r}
+``` r
 phthte_file_name = tibble(file_name = list.files("./data/PHTHTE/"))
 
 phthte =
@@ -46,8 +31,11 @@ phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
            phthe_combin = ifelse(phthe > 3.73, 1 ,0)) 
 ```
 
-## Exploratory analysis
+Exploratory analysis
+--------------------
 
-## Tendency analysis
+Tendency analysis
+-----------------
 
-## Population compare
+Population compare
+------------------
