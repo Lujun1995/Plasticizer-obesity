@@ -1,30 +1,36 @@
 ---
 title: "Plastic"
-author: "JunLu"
+author: "Yun He, Jun Lu, Chu Yu, Chunxiao Zhai, Haoran Hu"
 date: "11/21/2018"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(SASxport)
 ```
 
-## R Markdown
+## Read and clean the data
+```{r}
+phthte_file_name = tibble(file_name = list.files("./data/PHTHTE/"))
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+phthte =
+  phthte_file_name %>% 
+  mutate(map(str_c("./data/PHTHTE/", file_name), ~read.xport(.x))) %>% 
+  unnest() 
+    
+demo_file_name = tibble(file_name_2 = list.files("./data/DEMO/"))
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+demo = 
+    demo_file_name %>% 
+    mutate(map(str_c("./data/DEMO/", file_name_2), ~read.xport(.x))) %>% 
+    unnest()
 
-```{r cars}
-summary(cars)
+phthe_demo = inner_join(demo, phthte, by = "SEQN") %>% 
+    select(file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH1, weight = WTMEC2YR, 
+           income = INDFMPIR, URXCNP, URXCOP, URXECP) %>% 
+    mutate(phthe = log(URXCNP + URXCOP + URXECP),
+           phthe_combin = ifelse(phthe > 3.73, 1 ,0)) 
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
