@@ -40,10 +40,16 @@ demo =
     unnest()
 
 phthe_demo = inner_join(demo, phthte, by = "SEQN") %>% 
-    select(file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH1, weight = WTMEC2YR, 
-           income = INDFMPIR, URXCNP, URXCOP, URXECP) %>% 
+    select(file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
+           income = INDFMPIR, URXCNP, URXCOP, URXECP, pregnancy_status = RIDEXPRG) %>% 
     mutate(phthe = log(URXCNP + URXCOP + URXECP),
-           phthe_combin = ifelse(phthe > 3.73, 1 ,0)) 
+           phthe_combin = ifelse(phthe > 3.73, 1 ,0),
+           file_name = str_replace(file_name, "PHTHTE_", ""),
+           file_name = str_replace(file_name, ".XPT", ""),
+           race = plyr::mapvalues(race, c(1, 2, 3, 4, 6, 7), c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
+           pregnancy_status = plyr::mapvalues(pregnancy_status, c(1, 2, 3), c("yes", "no", "unknown"))) %>% 
+  rename(year = file_name)
+  
 ```
 
 ## Exploratory analysis
@@ -51,3 +57,5 @@ phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
 ## Tendency analysis
 
 ## Population compare
+
+性别，种族，塑化剂随年龄变化
