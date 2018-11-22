@@ -39,7 +39,6 @@ demo =
     mutate(map(str_c("./data/DEMO/", file_name_2), ~read.xport(.x))) %>% 
     unnest()
 
-<<<<<<< HEAD
 phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
   select(year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
          income = INDFMPIR, pregnancy_status = RIDEXPRG, MEP = URXMEP, MnBP = URXMBP, 
@@ -54,20 +53,7 @@ phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
   gather(key = "phthe", value = "concen_value", MEP:phthe_all) %>% 
   mutate(log_value = log(concen_value)) %>% 
   filter(!is.na(concen_value))
-=======
-phthe_demo = inner_join(demo, phthte, by = "SEQN") %>% 
-    select(file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
-           income = INDFMPIR, URXCNP, URXCOP, URXECP, pregnancy_status = RIDEXPRG) %>% 
-    mutate(phthe = log(URXCNP + URXCOP + URXECP),
-           phthe_combin = ifelse(phthe > 3.73, 1 ,0),
-           file_name = str_replace(file_name, "PHTHTE_", ""),
-           file_name = str_replace(file_name, ".XPT", ""),
-           race = plyr::mapvalues(race, c(1, 2, 3, 4, 6, 7), c("Mexican American", "Other Hispanic", "Non Hispanic White", "Non Hispanic Black", "Non Hispanic Asian", "Other Race")),
-           pregnancy_status = plyr::mapvalues(pregnancy_status, c(1, 2, 3), c("yes", "no", "unknown")),
-           gender = plyr::mapvalues(gender, c(1, 2), c("male", "female"))) %>% 
-  rename(year = file_name)
-  
->>>>>>> f31a08a5cd91da5512423bac16ad8f0c9c8f517c
+
 ```
 
 ## Exploratory analysis
