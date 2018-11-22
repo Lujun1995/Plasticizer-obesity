@@ -58,4 +58,18 @@ phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
 
 ## Population compare
 
+```{r}
+phthte_gender_age = phthe_demo %>% 
+  select(year, gender, race, phthe) %>% 
+  nest(gender:phthe)
+
+
+gender_age_plot = function(year, data) {
+  ggplot(data, aes(x = "race", y = "phthe", fill = "gende"))
+}
+  
+gender_age_plot(phthte_gender_age[[1,1]], phthte_gender_age[[1,2]])
+```
+
+
 性别，种族，塑化剂随年龄变化
