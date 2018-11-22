@@ -39,16 +39,29 @@ demo =
     mutate(map(str_c("./data/DEMO/", file_name_2), ~read.xport(.x))) %>% 
     unnest()
 
-phthe_demo = inner_join(demo, phthte, by = "SEQN") %>% 
-    select(file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
-           income = INDFMPIR, URXCNP, URXCOP, URXECP, pregnancy_status = RIDEXPRG) %>% 
-    mutate(phthe = log(URXCNP + URXCOP + URXECP),
-           phthe_combin = ifelse(phthe > 3.73, 1 ,0),
-           file_name = str_replace(file_name, "PHTHTE_", ""),
-           file_name = str_replace(file_name, ".XPT", ""),
-           race = plyr::mapvalues(race, c(1, 2, 3, 4, 6, 7), c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
-           pregnancy_status = plyr::mapvalues(pregnancy_status, c(1, 2, 3), c("yes", "no", "unknown"))) %>% 
-  rename(year = file_name)
+phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
+  select(year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
+         income = INDFMPIR, pregnancy_status = RIDEXPRG, MEP = URXMEP, MnBP = URXMBP, 
+         MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
+  mutate(phthe_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
+         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic",
+                                    "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
+         pregnancy_status = factor(pregnancy_status, levels = c(1, 2, 3), labels = c("yes", "no", "unknown")),
+         gender = factor(gender, levels = c(1,2), labels = c("male", "female")),
+         year = str_remove(year, "PHTHTE_"),
+         year = str_remove(year, ".XPT")) %>%
+  gather(key = "phthe", value = "concen_value", MEP:phthe_all) %>% 
+  mutate(log_value = log(concen_value)) %>% 
+  filter(!is.na(concen_value))
+
+
+
+  
+
+  
+  
+           
+
   
 ```
 
