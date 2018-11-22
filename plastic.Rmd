@@ -76,7 +76,7 @@ phthe_demo %>%
 ## Population compare
 
 ```{r}
-phthe_by_year = phthte_demo %>% 
+phthte_by_year = phthte_demo %>% 
   select(year, gender, race, age, phthe) %>% 
   nest(gender:phthe)
 
@@ -106,7 +106,5 @@ age_phthte_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
 ```
 
 性别，种族，塑化剂随年龄变化
-```{r}
-p
-```
+
 
