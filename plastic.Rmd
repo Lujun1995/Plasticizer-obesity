@@ -39,21 +39,20 @@ demo =
     mutate(map(str_c("./data/DEMO/", file_name_2), ~read.xport(.x))) %>% 
     unnest()
 
-phthe_demo = inner_join(demo, phthte, by = "SEQN") %>%
+phthte_demo = inner_join(demo, phthte, by = "SEQN") %>%
   select(year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
          income = INDFMPIR, pregnancy_status = RIDEXPRG, MEP = URXMEP, MnBP = URXMBP, 
          MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
-  mutate(phthe_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
+  mutate(phthte_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
          race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic",
                                     "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
          pregnancy_status = factor(pregnancy_status, levels = c(1, 2, 3), labels = c("yes", "no", "unknown")),
          gender = factor(gender, levels = c(1,2), labels = c("male", "female")),
          year = str_remove(year, "PHTHTE_"),
          year = str_remove(year, ".XPT")) %>%
-  gather(key = "phthe", value = "concen_value", MEP:phthe_all) %>% 
+  gather(key = "phthe", value = "concen_value", MEP:phthte_all) %>% 
   mutate(log_value = log(concen_value)) %>% 
   filter(!is.na(concen_value))
-
 ```
 
 ## Exploratory analysis
@@ -77,7 +76,7 @@ phthe_demo %>%
 ## Population compare
 
 ```{r}
-phthe_by_year = phthe_demo %>% 
+phthe_by_year = phthte_demo %>% 
   select(year, gender, race, age, phthe) %>% 
   nest(gender:phthe)
 
@@ -95,15 +94,19 @@ gender_race_plot = function(year, gender_race_data) {
 
 gender_race_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
 
-age_phthe_plot = function(year, age_data) {
+age_phthte_plot = function(year, age_data) {
   age_data %>% 
     mutate(age = cut(age,  breaks = c(0, 12, 18, 35, 55, Inf), labels = c("Young children(0-12ys)", "Teenagers(13-18ys)", "Young adults(19-35ys)", "Middle-aged adults(36-55ys)", "Older adults(>55ys)"))) %>% 
     ggplot(aes(x = age, y = phthe)) + 
     geom_boxplot(fill = "brown1") + 
     theme(axis.text.x = element_text(face = "plain", color = "black", size = 10, angle = 30,hjust = 1))
 }
-age_phthe_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
+age_phthte_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
 
 ```
 
 性别，种族，塑化剂随年龄变化
+```{r}
+p
+```
+
