@@ -77,7 +77,7 @@ gender_race_plot = function(year, gender_race_data) {
    gender_race_data %>% 
    mutate(gender = as.factor(gender),
           race = as.factor(race)) %>% 
-   mutate(race = forcats::fct_reorder(race, phthe)) %>% 
+   mutate(race = forcats::fct_reorder(race, gender_race_data$phthe)) %>% 
    ggplot(aes(x = race, y = phthe, fill = gender)) + 
      geom_boxplot() + 
      labs(title = str_c("Urine phthte level of differnet gender and race group in ", year), y = "Urine phthte level") +
