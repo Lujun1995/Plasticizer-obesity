@@ -229,7 +229,30 @@ phthalate %>%
   ggplot(aes(x = year, y = log_value, fill = factor(pregnancy_status))) +
   geom_boxplot() +
   facet_grid(~factor(phthte))
+
+## lm
+phthalate %>% 
+  filter(age_cat != 1 & phthte == "phthte_all") %>%
+  lm(bmi~log_value+age+gender+race+income, data = .) %>% summary()
   
+
+
+## glm for bmi and concentration
+phthalate_bmi = phthalate %>% 
+  filter(age_cat != 1) %>%
+  mutate(overweight_obese = ifelse(bmi >= 25, 1, 0)) %>% 
+  mutate(age_cat = factor(age_cat))
+  
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+  
+phthalate_bmi %>% 
+  filter(phthte == "phthte_all") %>% 
+  glm(overweight_obese~log_value+age_cat+gender+race+income, data = ., family = binomial()) %>% 
+  summary() %>% 
 ```
 
 
