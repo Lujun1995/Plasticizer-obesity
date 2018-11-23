@@ -140,6 +140,99 @@ The final dataset contains ``
 
 ## Exploratory analysis
 
+```{r}
+phthalate = phthte_demo_bmx %>% 
+  mutate(age_cat = ifelse(age >= 2 & age <= 19, 1, 
+                          ifelse(age >= 20 & age <= 39, 2, 
+                                 ifelse(age >= 40 & age <= 59, 3, 
+                                        ifelse(age >= 60 & age <= 79, 4, 5)))))
+## effect of gender
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  ggplot(aes(x = year, y = log_value, fill = gender)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>% 
+  ggplot(aes(x = year, y = log_value, fill = gender)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of age
+phthalate %>% 
+  filter(gender == "male") %>%
+  mutate(age_cat = factor(age_cat)) %>% 
+  mutate(age_cat = fct_reorder(age_cat, log_value)) %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(gender == "female") %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of race
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  mutate(race = fct_reorder(race, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = race)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  mutate(race = fct_reorder(race, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = race)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of income
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  ggplot(aes(x = income, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  ggplot(aes(x = income, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+## effect of BMI
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  ggplot(aes(x = bmi, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  filter(!is.na(bmi_cate)) %>% 
+  mutate(bmi_cate = fct_reorder(bmi_cate, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(bmi_cate))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of pregnancy status
+phthalate %>% 
+  filter(!is.na(pregnancy_status)) %>% 
+  mutate(pregnancy_status = fct_reorder(pregnancy_status, log_value)) %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(pregnancy_status))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+  
+```
+
+
 ## Tendency analysis
 ```{r}
 pd_tend = phthe_demo %>%
