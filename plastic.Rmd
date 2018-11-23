@@ -123,15 +123,6 @@ phthte_demo_bmx =
   gather(key = "phthte", value = "concentrate", MEP:phthte_all) %>% 
   mutate(log_value = log(concentrate)) %>% 
   filter(!is.na(concentrate))
-
-phthte_demo_bmx_1 =  phthte_demo_bmx %>% 
-  filter(age %in% 2:19, phthte == "MEP") %>% 
-  mutate(binomial = ifelse(bmi_cate == 3 | bmi_cate == 4, 1, 0)) %>% 
-  filter(!is.na(binomial))
-
-a = lm(log_value ~ age + income + race  + gender + gender + binomial, data = phthte_demo_bmx_1)
-summary(a)
-
 ```
 
 We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
