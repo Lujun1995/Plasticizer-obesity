@@ -23,39 +23,229 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 
 ## Overview
 
+## Data sources
+All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). 
+
+We download demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2015-2016][3]), phthalates metabolites data ([PHTHTE2011-2012][4], [PHTHTE2013-2014][5] and [PHTHTE2015-2016][6]) and body measures data ([BMX2011-2012][7], [BMX2013-2014][8] and [BMX2015-2016][9]) into three local files.
+
+[1]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT
+[2]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT
+[3]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XPT
+[4]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/PHTHTE_G.XPT
+[5]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/PHTHTE_H.XPT
+[6]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/PHTHTE_I.XPT
+[7]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BMX_G.XPT
+[8]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/BMX_H.XPT
+[9]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT
+
+
+1. Variables used in demographics data:
+
+* `SEQN `: Respondent sequence number
+* `RIAGENDR`: Gender
+* `RIDAGEYR`: Age
+* `RIDRETH3`: Race and Hispanic origin information, with Non-Hispanic Asian Category
+* `INDFMPIR`: Ratio of family income to poverty
+
+2. Variables used in phthalates metabolites data:
+
+* `SEQN `: Respondent sequence number
+* `URXMEP`: Mono-ethyl phthalate (ng/mL)
+* `URXMBP`: Mono-n-butyl phthalate (ng/mL)
+* `URXMIB`: Mono-isobutyl phthalate (ng/mL)
+* `URXMC1`: Mono-(3-carboxypropyl) phthalate (ng/mL)
+* `URXMZP`: Mono-benzyl phthalate (ng/mL)
+* `URXMHP`: Mono-(2-ethyl)-hexyl phthalate (ng/mL)
+* `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
+* `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
+
+3. Variables used in phthalates metabolites data
+
+* `SEQN `: Respondent sequence number
+* `BMXBMI`: Body Mass Index (kg/m**2)
+* `BMDBMIC`: BMI Category - Children/Youth
+
+## Get the data
+```{r}
+download_nhanes = function(year, data_category){
+  letter = c("2011-2012" = "G", "2013-2014" = "H", "2015-2016" = "I")
+  url = str_c("https://wwwn.cdc.gov/Nchs/Nhanes/", year, "/", data_category, "_", letter[year], ".XPT")
+  destfile_name = str_c("./data/", data_category, "/", data_category, year, ".XPT")
+  download.file(url, destfile = destfile_name, method = "curl")
+}
+
+
+if (!file.exists("data")) {
+  dir.create("./data")
+  dir.create("./data/DEMO")
+  dir.create("./data/PHTHTE")
+  dir.create("./data/BMX")
+  year = c("2011-2012", "2013-2014", "2015-2016")
+  map(year, ~download_nhanes(.x, "DEMO"))
+  map(year, ~download_nhanes(.x, "PHTHTE"))
+  map(year, ~download_nhanes(.x, "BMX"))
+}
+```
+We created a function (`download_nhanes`) to download data in NHANES according to the year and data category. Then we used this function and `map` to download demographics data, phthalates metabolites data and body measures data from 2011 to 2016 into three local files.
+
+
 ## Read and clean the data
 ```{r}
-phthte_file_name = tibble(file_name = list.files("./data/PHTHTE/"))
+read_file_data = function(data_category){
+  path = str_c("./data/", data_category, "/")
+  file_name = tibble(file_name = list.files(path))
+  file_name %>% 
+    mutate(map(str_c(path, file_name), ~read.xport(.x))) %>% 
+    unnest() 
+}
 
-phthte =
-  phthte_file_name %>% 
-  mutate(map(str_c("./data/PHTHTE/", file_name), ~read.xport(.x))) %>% 
-  unnest() 
-    
-demo_file_name = tibble(file_name_2 = list.files("./data/DEMO/"))
+phthte = read_file_data("PHTHTE")
+demo = read_file_data("DEMO")
+bmx = read_file_data("BMX")
 
-demo = 
-    demo_file_name %>% 
-    mutate(map(str_c("./data/DEMO/", file_name_2), ~read.xport(.x))) %>% 
-    unnest()
+phthte_demo = inner_join(demo, phthte, by = "SEQN") 
+phthte_demo_bmx = inner_join(phthte_demo, bmx, by = "SEQN")
 
-phthte_demo = inner_join(demo, phthte, by = "SEQN") %>%
-  select(year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, weight = WTMEC2YR, 
-         income = INDFMPIR, pregnancy_status = RIDEXPRG, MEP = URXMEP, MnBP = URXMBP, 
+phthte_demo_bmx =
+  phthte_demo_bmx %>% 
+  select(id = SEQN, year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, 
+         pregnancy_status = RIDEXPRG, bmi_cate = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, 
          MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
   mutate(phthte_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
          race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic",
                                     "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
          pregnancy_status = factor(pregnancy_status, levels = c(1, 2, 3), labels = c("yes", "no", "unknown")),
-         gender = factor(gender, levels = c(1,2), labels = c("male", "female")),
-         year = str_remove(year, "PHTHTE_"),
+         gender = factor(gender, levels = c(1, 2), labels = c("male", "female")),
+         bmi_cate = factor(bmi_cate, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight",
+                                                                        "obese")),
+         year = str_remove(year, "BMX"),
          year = str_remove(year, ".XPT")) %>%
-  gather(key = "phthe", value = "concen_value", MEP:phthte_all) %>% 
-  mutate(log_value = log(concen_value)) %>% 
-  filter(!is.na(concen_value))
+  gather(key = "phthte", value = "concentrate", MEP:phthte_all) %>% 
+  mutate(log_value = log(concentrate)) %>% 
+  filter(!is.na(concentrate))
 ```
 
+We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
+
+The final dataset contains ``
+
 ## Exploratory analysis
+
+```{r}
+phthalate = phthte_demo_bmx %>% 
+  mutate(age_cat = ifelse(age >= 2 & age <= 19, 1, 
+                          ifelse(age >= 20 & age <= 39, 2, 
+                                 ifelse(age >= 40 & age <= 59, 3, 
+                                        ifelse(age >= 60 & age <= 79, 4, 5)))))
+## effect of gender
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  ggplot(aes(x = year, y = log_value, fill = gender)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>% 
+  ggplot(aes(x = year, y = log_value, fill = gender)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of age
+phthalate %>% 
+  filter(gender == "male") %>%
+  mutate(age_cat = factor(age_cat)) %>% 
+  mutate(age_cat = fct_reorder(age_cat, log_value)) %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(gender == "female") %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(age_cat))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of race
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  mutate(race = fct_reorder(race, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = race)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  mutate(race = fct_reorder(race, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = race)) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of income
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  ggplot(aes(x = income, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  ggplot(aes(x = income, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+## effect of BMI
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  ggplot(aes(x = bmi, y = log_value, color = year)) +
+  geom_smooth(se = F) +
+  facet_grid(~factor(phthte))
+
+phthalate %>% 
+  filter(age_cat == 1) %>%
+  filter(!is.na(bmi_cate)) %>% 
+  mutate(bmi_cate = fct_reorder(bmi_cate, log_value)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(bmi_cate))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## effect of pregnancy status
+phthalate %>% 
+  filter(!is.na(pregnancy_status)) %>% 
+  mutate(pregnancy_status = fct_reorder(pregnancy_status, log_value)) %>%
+  ggplot(aes(x = year, y = log_value, fill = factor(pregnancy_status))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+
+## lm
+phthalate %>% 
+  filter(age_cat != 1 & phthte == "phthte_all") %>%
+  lm(bmi~log_value+age+gender+race+income, data = .) %>% summary()
+  
+
+
+## glm for bmi and concentration
+phthalate_bmi = phthalate %>% 
+  filter(age_cat != 1) %>%
+  mutate(overweight_obese = ifelse(bmi >= 25, 1, 0)) %>% 
+  mutate(age_cat = factor(age_cat))
+  
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
+  geom_boxplot() +
+  facet_grid(~factor(phthte))
+  
+phthalate_bmi %>% 
+  filter(phthte == "phthte_all") %>% 
+  glm(overweight_obese~log_value+age_cat+gender+race+income, data = ., family = binomial()) %>% 
+  summary() %>% 
+```
+
 
 ## Tendency analysis
 ```{r}
