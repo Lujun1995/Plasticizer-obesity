@@ -12,8 +12,17 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Overview
 
 ## Motivation
+肥胖pandemic, 全球健康危机，塑料污染
 
-##
+## related works
+papaers:
+websites:
+
+## Initial Questions:
+
+###: 谁暴露了？
+    不同人群塑化剂分布
+###： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
 
 #### Data sources
 All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). 

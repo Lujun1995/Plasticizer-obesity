@@ -106,21 +106,26 @@ phthte_demo_bmx = inner_join(phthte_demo, bmx, by = "SEQN")
 
 phthte_demo_bmx =
   phthte_demo_bmx %>% 
-  select(id = SEQN, year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, 
-         pregnancy_status = RIDEXPRG, bmi_cate = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, 
-         MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
+  select(id = SEQN, year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, bmi_cate = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
   mutate(phthte_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
-         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic",
-                                    "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
-         pregnancy_status = factor(pregnancy_status, levels = c(1, 2, 3), labels = c("yes", "no", "unknown")),
+         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
          gender = factor(gender, levels = c(1, 2), labels = c("male", "female")),
-         bmi_cate = factor(bmi_cate, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight",
-                                                                        "obese")),
+         bmi_cate = factor(bmi_cate, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight","obese")),
          year = str_remove(year, "BMX"),
-         year = str_remove(year, ".XPT")) %>%
+         year = str_remove(year, ".XPT"),
+         age_cat = ifelse(age >= 2 & age <= 19, 1, 2),
+         age_cat = factor(age_cat, levels = c(1, 2), labels = c("children", "adults"))) %>%
   gather(key = "phthte", value = "concentrate", MEP:phthte_all) %>% 
   mutate(log_value = log(concentrate)) %>% 
   filter(!is.na(concentrate))
+
+phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
+
+phthte_adult = phthte_demo_bmx %>% 
+  filter(age_cat == "adults") %>%
+  mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+  
 ```
 
 We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
@@ -130,6 +135,15 @@ The final dataset contains ``
 ## Exploratory analysis
 
 ```{r}
+phthte_demo_bmx %>% 
+  mutate(year = ifelse(year == "2011-2012", 1, 
+                       ifelse(year == "2013-2014", 2, 3))) %>% 
+  group_by(year, phthte) %>% 
+  summarize(mean = mean(log_value)) %>% 
+  ggplot(aes(x = year, y = mean, color = factor(phthte))) +
+  geom_line() +
+  geom_point()
+
 phthalate = phthte_demo_bmx %>% 
   mutate(age_cat = ifelse(age >= 2 & age <= 19, 1, 
                           ifelse(age >= 20 & age <= 39, 2, 
@@ -239,11 +253,43 @@ phthalate_bmi %>%
   ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
   geom_boxplot() +
   facet_grid(~factor(phthte))
+
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  filter(phthte == "phthte_all") %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
+  geom_boxplot() +
+  facet_grid(~factor(gender))
   
 phthalate_bmi %>% 
   filter(phthte == "phthte_all") %>% 
-  glm(overweight_obese~log_value+age_cat+gender+race+income, data = ., family = binomial()) %>% 
-  summary() %>% 
+  glm(overweight_obese~log_value+age_cat+gender+race+income+gender*log_value, data = ., family = binomial()) %>% 
+  summary()
+
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  filter(phthte == "phthte_all") %>%
+  ggplot(aes(x = log_value, y = overweight_obese)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(~gender)
+
+phthte_demo_bmx %>% 
+  filter(!is.na(bmi_cate)) %>%
+  filter(phthte == "phthte_all") %>%
+  mutate(bmi_cat = ifelse(bmi_cate == "Overweight" | bmi_cate == "obese", 1, 0)) %>%
+  ggplot(aes(x = log_value, y = bmi_cat)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(~gender)
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  filter(phthte == "phthte_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender)
 ```
 
 
