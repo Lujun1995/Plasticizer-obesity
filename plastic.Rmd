@@ -17,8 +17,6 @@ knitr::opts_chunk$set(
     warning = F
  )
 theme_set(theme_bw() + theme(legend.position = "bottom"))
-
-
 ```
 
 ## Overview
@@ -233,6 +231,8 @@ phthalate_bmi = phthalate %>%
   filter(age_cat != 1) %>%
   mutate(overweight_obese = ifelse(bmi >= 25, 1, 0)) %>% 
   mutate(age_cat = factor(age_cat))
+
+phthalate_bmi %>% filter(phthte == "phthte_all") %>% ggplot(aes(x = log_value, y = overweight_obese)) + geom_point() + geom_smooth()
   
 phthalate_bmi %>% 
   filter(!is.na(overweight_obese)) %>% 
