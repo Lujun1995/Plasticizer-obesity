@@ -19,7 +19,6 @@ plasticizer pollution:
 start of concern,
 pediatrics society
 
-
 ## related works
 papaers:
 http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf
@@ -30,12 +29,24 @@ https://www.plasticisers.org
 
 ## Initial Questions:
 
-###: 谁暴露了？
+###: Initial questions: 
+  ##: 谁暴露了？
     不同人群塑化剂分布
     pls vs. race
     pls vs. income
     pls vs. obs 
-###： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
+  ##： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
+
+### data (source, scrap, clean)
+### Exploratory analysis: 
+  Visualizations
+  summaries
+  exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+  
+### Additional analysis: If you undertake formal statistical analyses, describe these in detail
+
+### Discussion: What were your findings? Are they what you expect? What insights into the data can you make?
+
 
 #### Data sources
 All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). 
