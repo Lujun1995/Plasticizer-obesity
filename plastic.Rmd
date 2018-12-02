@@ -59,7 +59,7 @@ phthte_demo = inner_join(demo, phthte, by = "SEQN") %>%
 
 ## Tendency analysis
 ```{r}
-pd_tend = phthe_demo %>%
+pd_tend = phthte_demo %>%
   group_by(year) %>%
   summarize(total = n(),
             proportion = length(which(phthe_combin == 1))/total)
@@ -68,7 +68,7 @@ pd_tend %>%
   ggplot(aes(x = year, y = proportion)) +
   geom_histogram(stat = "identity")
 
-phthe_demo %>%
+phthte_demo %>%
   ggplot(aes(x = year, y = phthe, fill = factor(year))) +
   geom_violin()
 ```
