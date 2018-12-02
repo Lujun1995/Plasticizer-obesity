@@ -124,7 +124,8 @@ phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 phthte_adult = phthte_demo_bmx %>% 
   filter(age_cat == "adults") %>%
   mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
-         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
+  select(-bmi_cate)
   
 ```
 
