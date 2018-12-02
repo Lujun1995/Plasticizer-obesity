@@ -9,19 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Overview
 
 ## Motivation
 肥胖pandemic, 全球健康危机，塑料污染
+perevelance, WHO, US
+burden of disease, WHO, US
+
+plasticizer pollution:
+start of concern,
+pediatrics society
+
 
 ## related works
 papaers:
+http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf
+
+
 websites:
+https://www.plasticisers.org
 
 ## Initial Questions:
 
 ###: 谁暴露了？
     不同人群塑化剂分布
+    pls vs. race
+    pls vs. income
+    pls vs. obs 
 ###： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
 
 #### Data sources
