@@ -128,3 +128,12 @@ phthte_demo_bmx =
 
 We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
 
+## Exploratory analysis
+
+
+## Distribution plots 
+
+## LS means
+
+## Obesity analysis
+
