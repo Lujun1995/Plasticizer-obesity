@@ -109,21 +109,26 @@ phthte_demo_bmx = inner_join(phthte_demo, bmx, by = "SEQN")
 
 phthte_demo_bmx =
   phthte_demo_bmx %>% 
-  select(id = SEQN, year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, 
-         pregnancy_status = RIDEXPRG, bmi_cate = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, 
-         MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
+  select(id = SEQN, year = file_name, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, bmi_cate = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, MiBP = URXMIB, MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
   mutate(phthte_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
-         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic",
-                                    "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
-         pregnancy_status = factor(pregnancy_status, levels = c(1, 2, 3), labels = c("yes", "no", "unknown")),
+         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
          gender = factor(gender, levels = c(1, 2), labels = c("male", "female")),
-         bmi_cate = factor(bmi_cate, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight",
-                                                                        "obese")),
+         bmi_cate = factor(bmi_cate, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight","obese")),
          year = str_remove(year, "BMX"),
-         year = str_remove(year, ".XPT")) %>%
+         year = str_remove(year, ".XPT"),
+         age_cat = ifelse(age >= 2 & age <= 19, 1, 2),
+         age_cat = factor(age_cat, levels = c(1, 2), labels = c("children", "adults"))) %>%
   gather(key = "phthte", value = "concentrate", MEP:phthte_all) %>% 
   mutate(log_value = log(concentrate)) %>% 
   filter(!is.na(concentrate))
+
+phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
+
+phthte_adult = phthte_demo_bmx %>% 
+  filter(age_cat == "adults") %>%
+  mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+
 ```
 
 We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
