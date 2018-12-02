@@ -295,6 +295,6 @@ age_phthte_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
 
 ```
 
-性别，种族，塑化剂随年龄变化
+
 
 
