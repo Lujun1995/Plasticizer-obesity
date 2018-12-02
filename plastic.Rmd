@@ -141,6 +141,15 @@ The final dataset contains ``
 ## Exploratory analysis
 
 ```{r}
+phthte_demo_bmx %>% 
+  mutate(year = ifelse(year == "2011-2012", 1, 
+                       ifelse(year == "2013-2014", 2, 3))) %>% 
+  group_by(year, phthte) %>% 
+  summarize(mean = mean(log_value)) %>% 
+  ggplot(aes(x = year, y = mean, color = factor(phthte))) +
+  geom_line() +
+  geom_point()
+
 phthalate = phthte_demo_bmx %>% 
   mutate(age_cat = ifelse(age >= 2 & age <= 19, 1, 
                           ifelse(age >= 20 & age <= 39, 2, 
@@ -248,11 +257,43 @@ phthalate_bmi %>%
   ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
   geom_boxplot() +
   facet_grid(~factor(phthte))
+
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  filter(phthte == "phthte_all") %>% 
+  ggplot(aes(x = year, y = log_value, fill = factor(overweight_obese))) +
+  geom_boxplot() +
+  facet_grid(~factor(gender))
   
 phthalate_bmi %>% 
   filter(phthte == "phthte_all") %>% 
-  glm(overweight_obese~log_value+age_cat+gender+race+income, data = ., family = binomial()) %>% 
-  summary() %>% 
+  glm(overweight_obese~log_value+age_cat+gender+race+income+gender*log_value, data = ., family = binomial()) %>% 
+  summary()
+
+phthalate_bmi %>% 
+  filter(!is.na(overweight_obese)) %>% 
+  filter(phthte == "phthte_all") %>%
+  ggplot(aes(x = log_value, y = overweight_obese)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(~gender)
+
+phthte_demo_bmx %>% 
+  filter(!is.na(bmi_cate)) %>%
+  filter(phthte == "phthte_all") %>%
+  mutate(bmi_cat = ifelse(bmi_cate == "Overweight" | bmi_cate == "obese", 1, 0)) %>%
+  ggplot(aes(x = log_value, y = bmi_cat)) +
+  geom_point() +
+  geom_smooth() +
+  facet_grid(~gender)
+
+phthalate %>% 
+  filter(age_cat != 1) %>%
+  filter(phthte == "phthte_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender)
 ```
 
 
@@ -304,6 +345,6 @@ age_phthte_plot(phthe_by_year[[1,1]],phthe_by_year$data[[1]])
 
 ```
 
-性别，种族，塑化剂随年龄变化
+
 
 
