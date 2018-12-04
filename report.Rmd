@@ -1,6 +1,6 @@
 ---
 title: "Report"
-author: "JunLu"
+author: "JunLu YunHe"
 date: "12/2/2018"
 output: html_document
 ---
@@ -43,9 +43,13 @@ https://www.plasticisers.org
   summaries
   exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
   
-### Additional analysis: If you undertake formal statistical analyses, describe these in detail
+### Additional analysis: 
+    If you undertake formal statistical analyses, describe these in detail
 
-### Discussion: What were your findings? Are they what you expect? What insights into the data can you make?
+### Discussion: 
+    What were your findings? 
+    Are they what you expect? 
+    What insights into the data can you make?
 
 
 #### Data sources
