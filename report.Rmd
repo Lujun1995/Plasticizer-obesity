@@ -404,12 +404,54 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 * Levels of the total phthalates were higher in male.
 
 ## Obesity analysis
+
+### Explore the association between the phthalate exposure and obesity status
 ```{r}
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
 phthte_adult = phthte_demo_bmx %>% 
   filter(age_cat == "adults") %>%
   mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
-         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
+  select(-bmi_cat)
+
+phthte_children %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among children"
+  )
+
+phthte_adult %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among adults"
+  )
+
+```
+
+### Fit a GLM model
+
+```{r}
+phthte_adult %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "male") %>%
+  mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
+  glm(overweight_status~log_value+age+race+income, data = ., family = binomial()) %>% 
+  summary()
+
+
+
 ```
 
