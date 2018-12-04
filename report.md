@@ -21,8 +21,6 @@ Related works
 
 3.<https://doi.org/10.1289/ehp.93101378>
 
-<<<<<<< HEAD
-=======
 4.<https://doi.org/10.2174/1568008043340017>
 
 5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
@@ -51,7 +49,6 @@ Initial questions:
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
->>>>>>> c6300f30ff2416c120498f399b88dd67f5783685
 Data sources
 ------------
 
@@ -79,7 +76,7 @@ Variables used in phthalates metabolites data:
 -   `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
 -   `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
 
-Variables used in phthalates metabolites data
+Variables used in body measures data
 
 -   `SEQN`: Respondent sequence number
 -   `BMXBMI`: Body Mass Index (kg/m\*\*2)
