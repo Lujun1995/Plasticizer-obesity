@@ -453,11 +453,87 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 Obesity analysis
 ----------------
 
+### Explore the association between the phthalate exposure and obesity status
+
 ``` r
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
 phthte_adult = phthte_demo_bmx %>% 
   filter(age_cat == "adults") %>%
   mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
-         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
+  select(-bmi_cat)
+
+phthte_children %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among children"
+  )
 ```
+
+<img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
+``` r
+phthte_adult %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among adults"
+  )
+```
+
+<img src="report_files/figure-markdown_github/unnamed-chunk-9-2.png" style="display: block; margin: auto;" />
+
+### Fit a GLM model
+
+``` r
+phthte_adult %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "male") %>%
+  mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
+  glm(overweight_status~log_value+age+race+income, data = ., family = binomial()) %>% 
+  summary()
+```
+
+    ## 
+    ## Call:
+    ## glm(formula = overweight_status ~ log_value + age + race + income, 
+    ##     family = binomial(), data = .)
+    ## 
+    ## Deviance Residuals: 
+    ##     Min       1Q   Median       3Q      Max  
+    ## -2.1576  -1.1287   0.6787   0.8167   1.5229  
+    ## 
+    ## Coefficients:
+    ##                         Estimate Std. Error z value Pr(>|z|)    
+    ## (Intercept)             0.298342   0.284686   1.048 0.294654    
+    ## log_value               0.110274   0.041507   2.657 0.007889 ** 
+    ## age                     0.012329   0.002783   4.429 9.46e-06 ***
+    ## raceother_hispanic     -0.293686   0.232091  -1.265 0.205731    
+    ## racenon_hispanic_white -0.661801   0.179717  -3.682 0.000231 ***
+    ## racenon_hispanic_black -0.791077   0.187619  -4.216 2.48e-05 ***
+    ## racenon_hispanic_asian -1.792363   0.203409  -8.812  < 2e-16 ***
+    ## raceother_race         -0.955073   0.285563  -3.345 0.000824 ***
+    ## income                  0.107288   0.030359   3.534 0.000409 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## (Dispersion parameter for binomial family taken to be 1)
+    ## 
+    ##     Null deviance: 2708.1  on 2256  degrees of freedom
+    ## Residual deviance: 2562.0  on 2248  degrees of freedom
+    ##   (262 observations deleted due to missingness)
+    ## AIC: 2580
+    ## 
+    ## Number of Fisher Scoring iterations: 4
