@@ -1,6 +1,6 @@
 Report
 ================
-JunLu YunHe ChunxiaoZhai
+Jun Lu, Yun He, Chu Yu, Chunxiao Zhai, Haoran Hu
 12/2/2018
 
 Motivation
@@ -10,20 +10,48 @@ Motivation
 
 -   The increasing plasticizer evidence: Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
 
-related works
+Related works
 -------------
 
--   papaers: 1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf> 2.<https://doi.org/10.1007/s00244-017-0441-6> 3.<https://doi.org/10.1289/ehp.93101378> 4.<https://doi.org/10.2174/1568008043340017> 5.<https://doi.org/10.1016/j.jhazmat.2017.06.036> 6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/> 7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
+-   papers:
 
--   websites: 1.<https://www.plasticisers.org> 2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/> 3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents> 4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm> 5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
+1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
 
-### : Initial questions:
+2.<https://doi.org/10.1007/s00244-017-0441-6>
+
+3.<https://doi.org/10.1289/ehp.93101378>
+
+<<<<<<< HEAD
+=======
+4.<https://doi.org/10.2174/1568008043340017>
+
+5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
+
+6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
+
+7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
+
+-   websites:
+
+1.<https://www.plasticisers.org>
+
+2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/>
+
+3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
+
+4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
+
+5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
+
+Initial questions:
+------------------
 
 -   Are people exposed at the same level? Who has been exposed most?
 -   Are distributions of different types of plasticizers same in different populations?
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
+>>>>>>> c6300f30ff2416c120498f399b88dd67f5783685
 Data sources
 ------------
 
