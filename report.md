@@ -24,20 +24,6 @@ related works
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
-### Exploratory analysis:
-
-Visualizations summaries exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
-
-### Additional analysis:
-
-    If you undertake formal statistical analyses, describe these in detail
-
-### Discussion:
-
-    What were your findings? 
-    Are they what you expect? 
-    What insights into the data can you make?
-
 Data sources
 ------------
 
@@ -525,11 +511,8 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 Obesity analysis
 ----------------
 
-<<<<<<< HEAD
-=======
 In this part, we tried to explore the association of the phthalate exposure and the body mass index (BMI) and obesity outcome.
 
->>>>>>> 7340208b3823c1e32fbcd0a55dab58d5459184bb
 ### Explore the association between the phthalate exposure and obesity status
 
 ``` r
@@ -568,13 +551,9 @@ phth_obese_adult = phthte_adult %>%
 phth_obese_children/phth_obese_adult
 ```
 
-<<<<<<< HEAD
-<img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
-=======
 <img src="report_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 Plots above showed a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
->>>>>>> 7340208b3823c1e32fbcd0a55dab58d5459184bb
 
 ### Fit the GLM model
 
@@ -668,8 +647,6 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
 |:---------|:-----------------|:-----------------|
 | adult    | 1.18(1.09, 1.29) | 1.11(1.02, 1.2)  |
 | children | 1(0.89, 1.11)    | 1.15(1.02, 1.29) |
-<<<<<<< HEAD
-=======
 
 The table above summarized the change in odds of being obese due to increase in the magnitude of phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender.
 
@@ -681,4 +658,3 @@ Among children, there is no association between phthalate and obesity in females
 
 -   What were your findings? Are they what you expect? We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
 -   What insights into the data can you make?
->>>>>>> 7340208b3823c1e32fbcd0a55dab58d5459184bb

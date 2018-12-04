@@ -91,7 +91,7 @@ Variables used in phthalates metabolites data:
 * `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
 * `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
 
-Variables used in phthalates metabolites data
+Variables used in BMI data
 
 * `SEQN `: Respondent sequence number
 * `BMXBMI`: Body Mass Index (kg/m**2)
