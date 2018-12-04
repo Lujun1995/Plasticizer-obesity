@@ -574,4 +574,8 @@ Among adults, for a one-unit increase in phthalate exposure, we expect to see ab
 
 Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status. 
 
+### Discussion: 
+* What were your findings? Are they what you expect? 
+* What insights into the data can you make?
+
 
