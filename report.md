@@ -21,8 +21,6 @@ Related works
 
 3.<https://doi.org/10.1289/ehp.93101378>
 
-<<<<<<< HEAD
-=======
 4.<https://doi.org/10.2174/1568008043340017>
 
 5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
@@ -51,7 +49,6 @@ Initial questions:
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
->>>>>>> 06b478542b646c7da54550225292c2aefb2b7840
 Data sources
 ------------
 
@@ -173,7 +170,7 @@ We created a function (`read_file_data`) to read and combine data with one docum
 
 We selected variables of interest and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, the total exposure (`phthte_all`) was calculated as the sum of exposure for each of the eight phthalates. Then we used `gather` to go from wide format to long format. We took log transformation of `concentrate` to create `log_value`.
 
-The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 20011–2016. It contains 73341 observations and 11 variables.
+The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains 73341 observations and 11 variables.
 
 -   `id`: Respondent sequence number
 -   `gender`: Gender
@@ -182,7 +179,7 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 -   `bmi`: Body mass index (kg/m\*\*2)
 -   `bmi_cat`: BMI Category (only for children/youth)
 -   `age_cat`: Child or adult
--   `phthalate`: Different chemical components as phthalates
+-   `phthalate`: Different chemical components as phthalates and the sum-total exposure
 -   `concentrate`: Concentration of the components
 -   `log_value`: log value of the concentration
 
@@ -317,7 +314,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different in children and adults and among different races.
+We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among children and adults and among different race groups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -327,7 +324,7 @@ p1_density =
   phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
   ggplot(aes(x = concentrate)) + 
-  geom_density() +
+  geom_density(fill = "orange", alpha = 0.5) +
   labs(
     title = "Density plot of the sum-total exposure",
     y = "Density",
@@ -338,11 +335,11 @@ p2_density =
   phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
   ggplot(aes(x = log_value)) + 
-  geom_density() +
+  geom_density(fill = "orange", alpha = 0.5) +
   labs(
     title = "Density plot of log(the sum-total exposure)",
     y = "Density",
-    x = "Log(the sum-total exposure)"
+    x = "Log(sum-total exposure)"
   )
 
 p1_density + p2_density + plot_layout(ncol = 1)
@@ -350,10 +347,10 @@ p1_density + p2_density + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-As the distribution of the sum-total exposure is extremely right skewed, we used log(the sum-total exposure) (`log_value`) to do subsequent analyses.
+As the distribution of the sum-total exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
 
-Violin plots of log(the sum-total exposure)
--------------------------------------------
+Violin plots of log(sum-total exposure)
+---------------------------------------
 
 ``` r
 race_dist =
@@ -428,14 +425,12 @@ race_dist
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-7-2.png" style="display: block; margin: auto;" />
 
-We stratfied the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup. From violin plots, we found that there were between-group differences in log(the sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
+We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup. From violin plots, we found that there were between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
 
 LS means analysis
 -----------------
 
-In order to compare log(the sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
-
-In order to compare phthalates concentrate in different subpopulations, we fitted a multilinear model and calculated the least square means.
+In order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
 
 ### Fit a multilinear model
 
@@ -521,7 +516,7 @@ p3_gender =
   geom_point(color = "orange", size = 2) +
   labs(
     x = "Gender",
-    y = "LS means of log(total exposure)"
+    y = NULL
   ) 
 
 
@@ -530,16 +525,16 @@ p1_race + (p2_poverty + p3_gender) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-Plots shows least square mean value and 95% confidence intervals of log(total exposure) by race, poverty status and gender. (Least square means are means for groups that are adjusted for other terms in the model)
+Plots above show least square means and 95% confidence intervals of log(sum-total exposure) by race, poverty status and gender. (Least square means are means for groups that are adjusted for other terms in the model)
 
--   Compared to other races, levels of the sum-total exposure were significantly higher in non\_hispanic\_black.
--   Compared to the nonpoverty, levels of the sum-total exposure were significantly higher in poverty.
+-   Compared to other race groups, levels of the sum-total exposure were significantly higher in non\_hispanic\_blacks.
+-   Compared to the group who are living in nonpoverty, levels of the sum-total exposure were significantly higher in the group who are living in poverty.
 -   Compared to females, levels of the sum-total exposure were higher in males.
 
 Obesity analysis
 ----------------
 
-In this part, we tried to explore the association of the phthalate exposure and the body mass index (BMI) and obesity outcome.
+In this part, we tried to explore the association of the sum-total phthalate exposure and the body mass index (BMI) and obesity outcome.
 
 ### Explore the association between the phthalate exposure and obesity status
 
@@ -554,36 +549,36 @@ phthte_adult = phthte_demo_bmx %>%
 
 phth_obese_children = phthte_children %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi, color = gender)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", lwd = 1.5) +
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point(aes(color = gender), alpha = 0.5) +
+  geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
   ) +
-  scale_fill_brewer(palette = "Pastel2")
+  scale_color_brewer(palette = "Pastel2")
 
 phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi, color = gender)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", lwd = 1.5) +
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point(aes(color = gender), alpha = 0.5) +
+  geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
   ) +
-  scale_fill_brewer(palette = "Pastel2")
+  scale_color_brewer(palette = "Pastel2")
 
 phth_obese_children/phth_obese_adult
 ```
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
-Plots above showed a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
+Plots above show a positive association of phthalate and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
 
 ### Fit the GLM model
 
@@ -678,11 +673,11 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
 | adult    | 1.18(1.09, 1.29) | 1.11(1.02, 1.2)  |
 | children | 1(0.89, 1.11)    | 1.15(1.02, 1.29) |
 
-The table above summarized the change in odds of being obese due to increase in the magnitude of phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender.
+The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender.
 
-Among adults, for a one-unit increase in phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status.
+Among adults, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status.
 
-Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status.
+Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status.
 
 ### Discussion:
 

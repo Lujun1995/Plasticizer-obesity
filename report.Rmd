@@ -181,7 +181,7 @@ We created a function (`read_file_data`) to read and combine data  with one docu
 
 We selected variables of interest and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, the total exposure (`phthte_all`) was calculated as the sum of exposure for each of the eight phthalates. Then we used `gather` to go from wide format to long format. We took log transformation of `concentrate` to create `log_value`. 
 
-The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 20011–2016. It contains `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
+The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
 
 * `id`: Respondent sequence number
 * `gender`: Gender
@@ -190,7 +190,7 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 * `bmi`: Body mass index (kg/m**2)
 * `bmi_cat`: BMI Category (only for children/youth)
 * `age_cat`: Child or adult
-* `phthalate`: Different chemical components as phthalates
+* `phthalate`: Different chemical components as phthalates and the sum-total exposure
 * `concentrate`: Concentration of the components
 * `log_value`: log value of the concentration
 
@@ -291,7 +291,7 @@ bar_4 =
 bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 ```
 
-We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different in children and adults and among different race groups.
+We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among children and adults and among different race groups.
 
 ## Density plots of the sum-total exposure
 
@@ -300,7 +300,7 @@ p1_density =
   phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
   ggplot(aes(x = concentrate)) + 
-  geom_density() +
+  geom_density(fill = "orange", alpha = 0.5) +
   labs(
     title = "Density plot of the sum-total exposure",
     y = "Density",
@@ -311,11 +311,11 @@ p2_density =
   phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
   ggplot(aes(x = log_value)) + 
-  geom_density() +
+  geom_density(fill = "orange", alpha = 0.5) +
   labs(
     title = "Density plot of log(the sum-total exposure)",
     y = "Density",
-    x = "Log(the sum-total exposure)"
+    x = "Log(sum-total exposure)"
   )
 
 p1_density + p2_density + plot_layout(ncol = 1)
@@ -323,7 +323,7 @@ p1_density + p2_density + plot_layout(ncol = 1)
 
 As the distribution of the sum-total exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
 
-## Violin plots of log(the sum-total exposure)
+## Violin plots of log(sum-total exposure)
 
 ```{r}
 race_dist =
@@ -397,7 +397,6 @@ We stratified the study population on the basis of gender, poverty status, race 
 
 In order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
 
-In order to compare phthalates concentrate in different subpopulations, we fitted a multilinear model and calculated the least square means.
 
 ### Fit a  multilinear model
 
@@ -454,7 +453,7 @@ p3_gender =
   geom_point(color = "orange", size = 2) +
   labs(
     x = "Gender",
-    y = "LS means of log(total exposure)"
+    y = NULL
   ) 
 
 
@@ -484,29 +483,29 @@ phthte_adult = phthte_demo_bmx %>%
 
 phth_obese_children = phthte_children %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi, color = gender)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", lwd = 1.5) +
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point(aes(color = gender), alpha = 0.5) +
+  geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
   ) +
-  scale_fill_brewer(palette = "Pastel2")
+  scale_color_brewer(palette = "Pastel2")
 
 phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi, color = gender)) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", lwd = 1.5) +
+  ggplot(aes(x = log_value, y = bmi)) +
+  geom_point(aes(color = gender), alpha = 0.5) +
+  geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
   ) +
-  scale_fill_brewer(palette = "Pastel2")
+  scale_color_brewer(palette = "Pastel2")
 
 phth_obese_children/phth_obese_adult
 ```
