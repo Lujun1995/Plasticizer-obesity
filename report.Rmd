@@ -49,15 +49,12 @@ Is this health crisis fully due to the diet? First fat and now sugar have been b
 5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
 
 ###: Initial questions: 
-  ##: 谁暴露了？
-    不同人群塑化剂分布
-    pls vs. race
-    pls vs. income
-    pls vs. obs 
-  ##： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
+* Are people exposed at the same level? Who has been exposed most?
+* Are distributions of different types of plasticizers same in different populations?
+* Are people exposed at the same levels of plasticizers affected the same way? 
+* Is there a dose response relationship? Is this relationship linear?
 
-<<<<<<< HEAD
-### data (source, scrap, clean)
+
 ### Exploratory analysis: 
   Visualizations
   summaries
@@ -72,8 +69,7 @@ Is this health crisis fully due to the diet? First fat and now sugar have been b
     What insights into the data can you make?
 
 
-=======
->>>>>>> 88da5d40f5aae45c083ddb6e9ab2ee71ed5ccfbb
+
 #### Data sources
 All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. 
 
