@@ -1,6 +1,6 @@
 ---
 title: "Report"
-author: "JunLu"
+author: "JunLu YunHe ChunxiaoZhai"
 date: "12/2/2018"
 output: github_document
 ---
@@ -20,36 +20,55 @@ knitr::opts_chunk$set(
     warning = F
  )
 theme_set(theme_bw() + theme(legend.position = "bottom"))
-
 ```
 
 
 ## Motivation
-肥胖pandemic, 全球健康危机，塑料污染
-perevelance, WHO, US
-burden of disease, WHO, US
 
-plasticizer pollution:
-start of concern,
-pediatrics society
+* The obesity pandemic:
+Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
+
+* The increasing plasticizer evidence:
+Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
 
 ## related works
-papaers:
-http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf
+* papaers:
+1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
+2.<https://doi.org/10.1007/s00244-017-0441-6>
+3.<https://doi.org/10.1289/ehp.93101378>
+4.<https://doi.org/10.2174/1568008043340017>
+5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
+6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
+7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
 
-
-websites:
-https://www.plasticisers.org
-
-## Initial Questions:
+* websites:
+1.<https://www.plasticisers.org>
+2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/>
+3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
+4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
+5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
 
 ###: Initial questions: 
-  ##: 谁暴露了？
-    不同人群塑化剂分布
-    pls vs. race
-    pls vs. income
-    pls vs. obs 
-  ##： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
+* Are people exposed at the same level? Who has been exposed most?
+* Are distributions of different types of plasticizers same in different populations?
+* Are people exposed at the same levels of plasticizers affected the same way? 
+* Is there a dose response relationship? Is this relationship linear?
+
+
+### Exploratory analysis: 
+  Visualizations
+  summaries
+  exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+  
+### Additional analysis: 
+    If you undertake formal statistical analyses, describe these in detail
+
+### Discussion: 
+    What were your findings? 
+    Are they what you expect? 
+    What insights into the data can you make?
+
+
 
 #### Data sources
 All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. 
@@ -94,6 +113,7 @@ Variables used in phthalates metabolites data
 * `BMDBMIC`: BMI Category - Children/Youth
 
 ## Get the data
+
 ```{r}
 download_nhanes = function(year, data_category){
   letter = c("2011-2012" = "G", "2013-2014" = "H", "2015-2016" = "I")
@@ -118,6 +138,7 @@ We created a function (`download_nhanes`) to download data in NHANES according t
 
 
 ## Read and clean the data
+
 ```{r}
 read_file_data = function(data_category){
   path = str_c("./data/", data_category, "/")
@@ -180,7 +201,12 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 
 ## Exploratory analysis
 
+<<<<<<< HEAD
 #### Summary statistics for demographics data
+=======
+#### Categorical variables
+
+>>>>>>> 50ce9fc20735ea38f436ff9dc80cc8aee7ca8be1
 ```{r}
 phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
@@ -190,7 +216,12 @@ phthte_demo_bmx %>%
   knitr::kable()
 ```
 
+<<<<<<< HEAD
 #### Summary statistics for phthalates metabolites data
+=======
+#### Continuous variable
+
+>>>>>>> 50ce9fc20735ea38f436ff9dc80cc8aee7ca8be1
 ```{r}
 phthte_demo_bmx %>% 
   select(-log_value) %>% 
@@ -204,7 +235,12 @@ phthte_demo_bmx %>%
 
 We computed a few summary statistics and checked whether there are enough samples to do analyses in each subgroup (race, gender, age and poverty status).
 
+<<<<<<< HEAD
 ## Percent contribution of individual phthalates to the sum-total exposure
+=======
+### Percent contribution of individual phthalates to the sum-total exposure
+
+>>>>>>> 50ce9fc20735ea38f436ff9dc80cc8aee7ca8be1
 ```{r}
 library(scales)
 bar_1 = 
@@ -293,7 +329,12 @@ p1_density + p2_density
 As the distribution of the sum-total exposure is extremely right skewed, we used log(the sum-total exposure) (`log_value`) to do subsequent analyses.
 
 
+<<<<<<< HEAD
 ## Violin plots of log(the sum-total exposure) among different subgroups
+=======
+### Distribution plots 
+
+>>>>>>> 50ce9fc20735ea38f436ff9dc80cc8aee7ca8be1
 ```{r}
 race_dist =
   phthte_demo_bmx %>% 
@@ -358,9 +399,15 @@ race_dist
 We stratfied the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup. From violin plots, we found that there were between-group differences in log(the sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
 
 ## LS means analysis
+<<<<<<< HEAD
 In order to compare log(the sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
+=======
+
+In order to compare phthalates concentrate in different subpopulations, we fitted a multilinear model and calculated the least square means.
+>>>>>>> 50ce9fc20735ea38f436ff9dc80cc8aee7ca8be1
 
 ### Fit a  multilinear model
+
 ```{r}
 multi_fit = 
   phthte_demo_bmx %>% 
@@ -372,6 +419,7 @@ summary(multi_fit)
 We fitted a multilinear model (log_value ~ age + gender + race + poverty_status + bmi) and found that gender, race, poverty_status and bmi are significant predictors in this model. And then we used this model to calculate least square means.
 
 ### Compare least square means
+
 ```{r}
 race_ls = lsmeans(multi_fit, pairwise ~ race, adjust = "tukey")
 
@@ -427,7 +475,10 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 
 ## Obesity analysis
 
+In this part, we tried to explore the association of the phthalate exposure and the body mass index (BMI) and obesity outcome.
+
 ### Explore the association between the phthalate exposure and obesity status
+
 ```{r}
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
@@ -437,11 +488,11 @@ phthte_adult = phthte_demo_bmx %>%
          overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
   select(-bmi_cat)
 
-phthte_children %>%
+phth_obese_children = phthte_children %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  ggplot(aes(x = log_value, y = bmi, color = gender)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", lwd = 1.5) +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
@@ -449,11 +500,11 @@ phthte_children %>%
     title = "Association between the phthalate exposure and obesity status among children"
   )
 
-phthte_adult %>%
+phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
-  ggplot(aes(x = log_value, y = bmi)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
+  ggplot(aes(x = log_value, y = bmi, color = gender)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", lwd = 1.5) +
   facet_grid(~gender) +
   labs(
     x = "Log value of phthalates concentrate",
@@ -461,19 +512,109 @@ phthte_adult %>%
     title = "Association between the phthalate exposure and obesity status among adults"
   )
 
+phth_obese_children/phth_obese_adult
 ```
 
-### Fit a GLM model
+Plots above showed a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
+
+### Fit the GLM model
 
 ```{r}
-phthte_adult %>% 
+## fit the model in children
+### male
+boy_mod = phthte_children %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "male") %>%
+  mutate(bmi_cat = ifelse(bmi_cat %in% c("Overweight", "obese"), 1, 0)) %>%  
+  glm(bmi_cat~log_value+age+race+poverty_status, data = ., family = binomial()) 
+
+boy_est = broom::tidy(boy_mod) %>% 
+  mutate(OR = exp(estimate)) 
+boy_conf = broom::confint_tidy(boy_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+boy_OR = bind_cols(boy_est, boy_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "male",
+         group = "children") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+### female
+girl_mod = phthte_children %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "female") %>%
+  mutate(bmi_cat = ifelse(bmi_cat %in% c("Overweight", "obese"), 1, 0)) %>%  
+  glm(bmi_cat~log_value+age+race+poverty_status, data = ., family = binomial()) 
+
+girl_est = broom::tidy(girl_mod) %>% 
+  mutate(OR = exp(estimate)) 
+girl_conf = broom::confint_tidy(girl_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+girl_OR = bind_cols(girl_est, girl_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "female",
+         group = "children") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+
+## fit the model in adults
+### male
+male_mod = phthte_adult %>% 
   filter(phthalate == "phthalate_all",
          gender == "male") %>%
   mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
-  glm(overweight_status~log_value+age+race+income, data = ., family = binomial()) %>% 
-  summary()
+  glm(overweight_status~log_value+age+race+poverty_status, data = ., family = binomial())
 
+male_est = broom::tidy(male_mod) %>% 
+  mutate(OR = exp(estimate)) 
+male_conf = broom::confint_tidy(male_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+male_OR = bind_cols(male_est, male_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "male",
+         group = "adult") %>% 
+  select(group, gender, OR, conf_low, conf_high)
 
+### female
+female_mod = phthte_adult %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "female") %>%
+  mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
+  glm(overweight_status~log_value+age+race+poverty_status, data = ., family = binomial()) 
+female_est = broom::tidy(female_mod) %>% 
+  mutate(OR = exp(estimate)) 
+female_conf = broom::confint_tidy(female_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+female_OR = bind_cols(female_est, female_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "female",
+         group = "adult") %>% 
+  select(group, gender, OR, conf_low, conf_high)
 
+bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>% 
+  mutate(
+    OR = round(OR, digits = 2),
+    conf_low = round(conf_low, digits = 2),
+    conf_high = round(conf_high, digits = 2),
+    OR = paste0(OR, "(", conf_low, ", ", conf_high, ")"))  %>% 
+  select(group, gender, OR) %>% 
+  spread(gender, OR) %>% 
+  knitr::kable()
 ```
+
+The table above summarized the change in odds of being obese due to increase in the magnitude of phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender. 
+
+Among adults, for a one-unit increase in phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status. 
+
+Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status. 
+
+### Discussion: 
+* What were your findings? Are they what you expect? 
+We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
+* What insights into the data can you make?
+
+
 
