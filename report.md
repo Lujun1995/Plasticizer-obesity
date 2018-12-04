@@ -21,8 +21,6 @@ Related works
 
 3.<https://doi.org/10.1289/ehp.93101378>
 
-<<<<<<< HEAD
-=======
 4.<https://doi.org/10.2174/1568008043340017>
 
 5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
@@ -51,11 +49,10 @@ Initial questions:
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
->>>>>>> c6300f30ff2416c120498f399b88dd67f5783685
 Data sources
 ------------
 
-All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States.
+All data were retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States.
 
 We downloaded demographics data ([DEMO2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT), [DEMO2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT) and [DEMO2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XPT)), phthalates metabolites data ([PHTHTE2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/PHTHTE_G.XPT), [PHTHTE2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/PHTHTE_H.XPT) and [PHTHTE2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/PHTHTE_I.XPT)) and body measures data ([BMX2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BMX_G.XPT), [BMX2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/BMX_H.XPT) and [BMX2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT)) into three local files.
 
@@ -79,7 +76,7 @@ Variables used in phthalates metabolites data:
 -   `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
 -   `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
 
-Variables used in phthalates metabolites data
+Variables used in body measures data
 
 -   `SEQN`: Respondent sequence number
 -   `BMXBMI`: Body Mass Index (kg/m\*\*2)
@@ -182,9 +179,9 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 -   `bmi`: Body mass index (kg/m\*\*2)
 -   `bmi_cat`: BMI Category (only for children/youth)
 -   `age_cat`: Child or adult
--   `phthalate`:
--   `concentrate`:
--   `log_value`:
+-   `phthalate`: Different chemical components as phthalates
+-   `concentrate`: Concentration of the components
+-   `log_value`: log value of the concentration
 
 Exploratory analysis
 --------------------
