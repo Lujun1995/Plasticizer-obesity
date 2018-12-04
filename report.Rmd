@@ -94,6 +94,7 @@ Variables used in phthalates metabolites data
 * `BMDBMIC`: BMI Category - Children/Youth
 
 ## Get the data
+
 ```{r}
 download_nhanes = function(year, data_category){
   letter = c("2011-2012" = "G", "2013-2014" = "H", "2015-2016" = "I")
@@ -118,6 +119,7 @@ We created a function (`download_nhanes`) to download data in NHANES according t
 
 
 ## Read and clean the data
+
 ```{r}
 read_file_data = function(data_category){
   path = str_c("./data/", data_category, "/")
@@ -182,6 +184,7 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 ## Exploratory analysis
 
 #### Categorical variables
+
 ```{r}
 phthte_demo_bmx %>% 
   filter(phthalate == "phthalate_all") %>% 
@@ -192,6 +195,7 @@ phthte_demo_bmx %>%
 ```
 
 #### Continuous variable
+
 ```{r}
 phthte_demo_bmx %>% 
   CreateTableOne(data = ., 
@@ -204,6 +208,7 @@ We computed a few summary statistics and checked whether there are enough sample
 
 
 ### Percent contribution of individual phthalates to the sum-total exposure
+
 ```{r}
 library(scales)
 bar_1 = 
@@ -277,6 +282,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 
 ### Distribution plots 
+
 ```{r}
 race_dist =
   phthte_demo_bmx %>% 
@@ -341,9 +347,11 @@ race_dist
 We stratfied the study population on the basis of gender, poverty status, race and age, and we made violin plots for each subpopulation. From violin plots, we can see that there were between-group differences in log(phthalates concentrate) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
 
 ## LS means analysis
+
 In order to compare phthalates concentrate in different subpopulations, we fitted a multilinear model and calculated the least square means.
 
 ### Fit a  multilinear model
+
 ```{r}
 multi_fit = 
   phthte_demo_bmx %>% 
@@ -355,6 +363,7 @@ summary(multi_fit)
 We fitted a multilinear model (log_value ~ age + gender + race + poverty_status + bmi) and found that gender, race, poverty_status and bmi are significant predictors in this model.
 
 ### Compare least square means
+
 ```{r}
 race_ls = lsmeans(multi_fit, pairwise ~ race, adjust = "tukey")
 
@@ -410,7 +419,10 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 
 ## Obesity analysis
 
+In this part, we tried to explore the association of the phthalate exposure and the body mass index (BMI) and obesity outcome.
+
 ### Explore the association between the phthalate exposure and obesity status
+
 ```{r}
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
@@ -446,6 +458,8 @@ phth_obese_adult = phthte_adult %>%
 
 phth_obese_children/phth_obese_adult
 ```
+
+Plots above showed a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
 
 ### Fit the GLM model
 
@@ -534,4 +548,11 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
   spread(gender, OR) %>% 
   knitr::kable()
 ```
+
+The table above summarized the change in odds of being obese due to increase in the magnitude of phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender. 
+
+Among adults, for a one-unit increase in phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status. 
+
+Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status. 
+
 
