@@ -21,6 +21,8 @@ Related works
 
 3.<https://doi.org/10.1289/ehp.93101378>
 
+<<<<<<< HEAD
+=======
 4.<https://doi.org/10.2174/1568008043340017>
 
 5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
@@ -49,6 +51,7 @@ Initial questions:
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
+>>>>>>> 06b478542b646c7da54550225292c2aefb2b7840
 Data sources
 ------------
 
@@ -559,7 +562,8 @@ phth_obese_children = phthte_children %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
@@ -571,7 +575,8 @@ phth_obese_adult = phthte_adult %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_children/phth_obese_adult
 ```
