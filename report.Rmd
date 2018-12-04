@@ -477,7 +477,8 @@ phth_obese_children = phthte_children %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
@@ -489,7 +490,8 @@ phth_obese_adult = phthte_adult %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_children/phth_obese_adult
 ```

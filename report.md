@@ -24,20 +24,6 @@ related works
 -   Are people exposed at the same levels of plasticizers affected the same way?
 -   Is there a dose response relationship? Is this relationship linear?
 
-### Exploratory analysis:
-
-Visualizations summaries exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
-
-### Additional analysis:
-
-    If you undertake formal statistical analyses, describe these in detail
-
-### Discussion:
-
-    What were your findings? 
-    Are they what you expect? 
-    What insights into the data can you make?
-
 Data sources
 ------------
 
@@ -548,7 +534,8 @@ phth_obese_children = phthte_children %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_adult = phthte_adult %>%
   filter(phthalate == "phthalate_all") %>%
@@ -560,7 +547,8 @@ phth_obese_adult = phthte_adult %>%
     x = "Log value of phthalates concentrate",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
-  )
+  ) +
+  scale_fill_brewer(palette = "Pastel2")
 
 phth_obese_children/phth_obese_adult
 ```
