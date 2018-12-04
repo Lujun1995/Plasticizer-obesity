@@ -453,11 +453,135 @@ Plots shows least square mean value and 95% confidence intervals of log(total ex
 Obesity analysis
 ----------------
 
+### Explore the association between the phthalate exposure and obesity status
+
 ``` r
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
 phthte_adult = phthte_demo_bmx %>% 
   filter(age_cat == "adults") %>%
   mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
-         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
+  select(-bmi_cat)
+
+phth_obese_children = phthte_children %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi, color = gender)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", lwd = 1.5) +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among children"
+  )
+
+phth_obese_adult = phthte_adult %>%
+  filter(phthalate == "phthalate_all") %>%
+  ggplot(aes(x = log_value, y = bmi, color = gender)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", lwd = 1.5) +
+  facet_grid(~gender) +
+  labs(
+    x = "Log value of phthalates concentrate",
+    y = "Body mass index (BMI)",
+    title = "Association between the phthalate exposure and obesity status among adults"
+  )
+
+phth_obese_children/phth_obese_adult
 ```
+
+<img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
+### Fit the GLM model
+
+``` r
+## fit the model in children
+### male
+boy_mod = phthte_children %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "male") %>%
+  mutate(bmi_cat = ifelse(bmi_cat %in% c("Overweight", "obese"), 1, 0)) %>%  
+  glm(bmi_cat~log_value+age+race+poverty_status, data = ., family = binomial()) 
+
+boy_est = broom::tidy(boy_mod) %>% 
+  mutate(OR = exp(estimate)) 
+boy_conf = broom::confint_tidy(boy_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+boy_OR = bind_cols(boy_est, boy_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "male",
+         group = "children") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+### female
+girl_mod = phthte_children %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "female") %>%
+  mutate(bmi_cat = ifelse(bmi_cat %in% c("Overweight", "obese"), 1, 0)) %>%  
+  glm(bmi_cat~log_value+age+race+poverty_status, data = ., family = binomial()) 
+
+girl_est = broom::tidy(girl_mod) %>% 
+  mutate(OR = exp(estimate)) 
+girl_conf = broom::confint_tidy(girl_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+girl_OR = bind_cols(girl_est, girl_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "female",
+         group = "children") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+
+## fit the model in adults
+### male
+male_mod = phthte_adult %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "male") %>%
+  mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
+  glm(overweight_status~log_value+age+race+poverty_status, data = ., family = binomial())
+
+male_est = broom::tidy(male_mod) %>% 
+  mutate(OR = exp(estimate)) 
+male_conf = broom::confint_tidy(male_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+male_OR = bind_cols(male_est, male_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "male",
+         group = "adult") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+### female
+female_mod = phthte_adult %>% 
+  filter(phthalate == "phthalate_all",
+         gender == "female") %>%
+  mutate(overweight_status = ifelse(overweight_status == "overweight", 1, 0)) %>%  
+  glm(overweight_status~log_value+age+race+poverty_status, data = ., family = binomial()) 
+female_est = broom::tidy(female_mod) %>% 
+  mutate(OR = exp(estimate)) 
+female_conf = broom::confint_tidy(female_mod) %>% 
+  mutate(conf_low = exp(conf.low),
+         conf_high = exp(conf.high))
+female_OR = bind_cols(female_est, female_conf) %>% 
+  filter(term == "log_value") %>% 
+  mutate(gender = "female",
+         group = "adult") %>% 
+  select(group, gender, OR, conf_low, conf_high)
+
+bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>% 
+  mutate(
+    OR = round(OR, digits = 2),
+    conf_low = round(conf_low, digits = 2),
+    conf_high = round(conf_high, digits = 2),
+    OR = paste0(OR, "(", conf_low, ", ", conf_high, ")"))  %>% 
+  select(group, gender, OR) %>% 
+  spread(gender, OR) %>% 
+  knitr::kable()
+```
+
+| group    | female           | male             |
+|:---------|:-----------------|:-----------------|
+| adult    | 1.18(1.09, 1.29) | 1.11(1.02, 1.2)  |
+| children | 1(0.89, 1.11)    | 1.15(1.02, 1.29) |
