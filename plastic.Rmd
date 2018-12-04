@@ -124,11 +124,15 @@ phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 phthte_adult = phthte_demo_bmx %>% 
   filter(age_cat == "adults") %>%
   mutate(overweight_status = ifelse(bmi >= 25, 1, 2),
-         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal")))
+         overweight_status = factor(overweight_status, levels = c(1, 2), labels = c("overweight", "normal"))) %>% 
+  select(-bmi_cate)
   
 ```
 
 We created a function (`read_file_data`) to read and combine data  with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
+
+We selected variables of interest and converted `gender`, `race` and `bmi_cat` into factors. For each individual, the total exposure (`phthte_all`) was calculated as  the sum of exposure for each of the eight phthalates. Then we used `gather` to go from wide format to long format. We took log transformation of `concentrate` and created. 
+
 
 The final dataset contains ``
 
