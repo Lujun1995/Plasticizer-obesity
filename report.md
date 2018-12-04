@@ -362,7 +362,7 @@ race_dist =
   stat_summary(fun.y = median, geom = "point", size = 1) +
   labs(
     x = "Race",
-    y = "Log value of phthalates concentrate ",
+    y = "Log(sum-total exposure)",
     title = "Distribution of log(total exporsure) in different races"
     ) +
   theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
@@ -392,7 +392,7 @@ poverty_status_dist =
   stat_summary(fun.y = median, geom = "point", size = 1) +
   labs(
     x = "Poverty_statuse",
-    y = "Log value of phthalates concentrate ",
+    y = "Log(sum-total exposure)",
     title = "Distribution of log(total exporsure) in different subpopulations"
     ) +
   guides(fill = guide_legend(title = NULL)) +
@@ -554,7 +554,7 @@ phth_obese_children = phthte_children %>%
   geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
-    x = "Log value of phthalates concentrate",
+    x = "Log(sum-total exposure)",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among children"
   ) +
@@ -567,7 +567,7 @@ phth_obese_adult = phthte_adult %>%
   geom_smooth(method = "lm") +
   facet_grid(~gender) +
   labs(
-    x = "Log value of phthalates concentrate",
+    x = "Log(sum-total exposure)",
     y = "Body mass index (BMI)",
     title = "Association between the phthalate exposure and obesity status among adults"
   ) +
