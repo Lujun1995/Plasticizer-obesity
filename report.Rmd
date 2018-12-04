@@ -52,9 +52,9 @@ https://www.plasticisers.org
   ##： 危害程度（剂量（pls）/效应（obs） ）在不同人群一样么？多少大？
 
 #### Data sources
-All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). 
+All data was retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. 
 
-We download demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2015-2016][3]), phthalates metabolites data ([PHTHTE2011-2012][4], [PHTHTE2013-2014][5] and [PHTHTE2015-2016][6]) and body measures data ([BMX2011-2012][7], [BMX2013-2014][8] and [BMX2015-2016][9]) into three local files.
+We downloaded demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2015-2016][3]), phthalates metabolites data ([PHTHTE2011-2012][4], [PHTHTE2013-2014][5] and [PHTHTE2015-2016][6]) and body measures data ([BMX2011-2012][7], [BMX2013-2014][8] and [BMX2015-2016][9]) into three local files.
 
 [1]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT
 [2]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT
@@ -67,7 +67,7 @@ We download demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2
 [9]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT
 
 
-1. Variables used in demographics data:
+Variables used in demographics data:
 
 * `SEQN `: Respondent sequence number
 * `RIAGENDR`: Gender
@@ -75,7 +75,7 @@ We download demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2
 * `RIDRETH3`: Race and Hispanic origin information, with Non-Hispanic Asian Category
 * `INDFMPIR`: Ratio of family income to poverty
 
-2. Variables used in phthalates metabolites data:
+Variables used in phthalates metabolites data:
 
 * `SEQN `: Respondent sequence number
 * `URXMEP`: Mono-ethyl phthalate (ng/mL)
@@ -87,7 +87,7 @@ We download demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2
 * `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
 * `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
 
-3. Variables used in phthalates metabolites data
+Variables used in phthalates metabolites data
 
 * `SEQN `: Respondent sequence number
 * `BMXBMI`: Body Mass Index (kg/m**2)
@@ -140,14 +140,18 @@ phthte_demo_bmx =
          bmi_cat = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, MiBP = URXMIB, 
          MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
   mutate(phthalate_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
-         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), labels = c("mexican_american", "other_hispanic", 
-                                              "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race")),
+         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), 
+                       labels = c("mexican_american", "other_hispanic", "non_hispanic_white",
+                                  "non_hispanic_black", "non_hispanic_asian", "other_race")),
          gender = factor(gender, levels = c(1, 2), labels = c("male", "female")),
-         bmi_cat = factor(bmi_cat, levels = c(1, 2, 3, 4), labels = c("underweight", "normal weight", "Overweight","obese")),
+         bmi_cat = factor(bmi_cat, levels = c(1, 2, 3, 4), 
+                          labels = c("underweight", "normal weight", "Overweight","obese")),
          age_cat = ifelse(age >= 2 & age <= 19, 1, 2),
-         age_cat = factor(age_cat, levels = c(1, 2), labels = c("children", "adults")),
-         poverty_status = ifelse(income >= 1, 1, 2), 
-         poverty_status = factor(poverty_status, levels = c(1, 2), labels = c("poverty", "nonpoverty"))) %>%
+         age_cat = factor(age_cat, levels = c(1, 2), 
+                          labels = c("children", "adults")),
+         poverty_status = ifelse(income >= 1, 2, 1), 
+         poverty_status = factor(poverty_status, levels = c(1, 2), 
+                                 labels = c("poverty", "nonpoverty"))) %>%
   gather(key = "phthalate", value = "concentrate", MEP:phthalate_all) %>% 
   mutate(log_value = log(concentrate)) %>% 
   filter(!is.na(concentrate))
@@ -161,7 +165,7 @@ We selected variables of interest and converted `gender`, `race`, `bmi_cat` and 
 
 
 
-The final dataset contains `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
+The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 20011–2016. It contains `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
 
 * `id`: Respondent sequence number
 * `gender`: Gender
@@ -180,6 +184,7 @@ The final dataset contains `r nrow(phthte_demo_bmx)` observations and `r ncol(ph
 #### Categorical variables
 ```{r}
 phthte_demo_bmx %>% 
+  filter(phthalate == "phthalate_all") %>% 
   CreateTableOne(data = ., 
                  vars = c("gender", "race", "age_cat", "poverty_status")) %>% 
   print(printToggle = FALSE, noSpaces = TRUE, showAllLevels = TRUE) %>% 
@@ -207,7 +212,7 @@ bar_1 =
   group_by(race, phthalate) %>% 
   summarize(mean = mean(log_value)) %>% 
   ggplot(aes(x = race, y = mean, fill = phthalate)) + 
-  geom_bar(position = "fill",stat = "identity", width = 0.5) +
+  geom_bar(position = "fill",stat = "identity", width = 0.4) +
   scale_y_continuous(labels = percent_format()) +
   theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
   scale_fill_brewer(palette = "Pastel2") +
@@ -224,7 +229,7 @@ bar_2 =
   group_by(poverty_status, phthalate) %>% 
   summarize(mean = mean(log_value)) %>% 
   ggplot(aes(x = poverty_status, y = mean, fill = phthalate)) + 
-  geom_bar(position = "fill",stat = "identity", width = 0.5) +
+  geom_bar(position = "fill",stat = "identity", width = 0.4) +
   scale_y_continuous(labels = percent_format()) +
   scale_fill_brewer(palette = "Pastel2") +
   labs(
@@ -239,7 +244,7 @@ bar_3 =
   group_by(age_cat, phthalate) %>% 
   summarize(mean = mean(log_value)) %>% 
   ggplot(aes(x = age_cat, y = mean, fill = phthalate)) + 
-  geom_bar(position = "fill",stat = "identity", width = 0.5) +
+  geom_bar(position = "fill",stat = "identity", width = 0.4) +
   scale_y_continuous(labels = percent_format()) +
   scale_fill_brewer(palette = "Pastel2") +
   labs(
@@ -254,7 +259,7 @@ bar_4 =
   group_by(gender, phthalate) %>% 
   summarize(mean = mean(log_value)) %>% 
   ggplot(aes(x = gender, y = mean, fill = phthalate)) + 
-  geom_bar(position = "fill",stat = "identity", width = 0.5) +
+  geom_bar(position = "fill",stat = "identity", width = 0.4) +
   scale_y_continuous(labels = percent_format()) +
   scale_fill_brewer(palette = "Pastel2") +
   labs(
