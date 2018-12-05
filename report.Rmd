@@ -24,12 +24,14 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
 ## Motivation
-Our group first meant to fo a project about obesity. But then we found it not fascinating enough and decided to switch it to project about plasticizer polution influencing the obesity of population.
+
 * The obesity pandemic:
 Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
 
 * The increasing plasticizer evidence:
 Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
+
+- **theme change:** Our group at first meant to do a project about obesity. But then we found it not fascinating enough and decided to switch theme to plasticizer pollution influencing the obesity of population.
 
 ## Related works
 * papers:
