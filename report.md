@@ -169,7 +169,7 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 -   `bmi`: Body mass index (kg/m\*\*2)
 -   `bmi_cat`: BMI Category (only for children/youth)
 -   `age_cat`: Child or adult
--   `phthalate`: Different chemical components as phthalates and the sum-total exposure
+-   `phthalate`: Type of phthalate
 -   `concentrate`: Concentration of the components
 -   `log_value`: log value of the concentration
 
@@ -240,6 +240,7 @@ Percent contribution of individual phthalates to the sum-total exposure
 bar_1 = 
   phthte_demo_bmx %>% 
   filter(phthalate != "phthalate_all") %>% 
+  mutate(race = factor(race, levels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race"), labels = c("Mexican American", "Other Hispanic", "Non Hispanic White", "Non Hispanic Black", "Non Hispanic Asian", "Other race"))) %>% 
   group_by(race, phthalate) %>% 
   summarize(mean = mean(concentrate)) %>% 
   ggplot(aes(x = race, y = mean, fill = phthalate)) + 
@@ -248,7 +249,7 @@ bar_1 =
   theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
   scale_fill_brewer(palette = "Pastel2") +
   labs(
-    title = "Percent contribution of individual phthalates to the sum-total exposure",
+    title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
   )
@@ -304,7 +305,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among children and adults and among different race groups.
+We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different between different gender and age groups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -337,7 +338,7 @@ p1_density + p2_density + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-As the distribution of the sum-total exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
+As the distribution of the sum-total phthalate exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
 
 Violin plots of log(sum-total exposure)
 ---------------------------------------
@@ -381,7 +382,7 @@ poverty_status_dist =
   geom_violin() +
   stat_summary(fun.y = median, geom = "point", size = 1) +
   labs(
-    x = "Poverty_statuse",
+    x = "Poverty_status",
     y = "Log(sum-total exposure)",
     title = "Distribution of log(total exporsure) in different subpopulations"
     ) +
