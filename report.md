@@ -577,7 +577,7 @@ Plots above show a positive association of phthalates and BMI among both childre
 
 ### Fit the GLM model
 
-There are lots of risk factors that are associated with obesity. We defined a categorical variable, where being overweight/obese was 1 and being normal weight/underweight was 0. And then we fitted a logistic regression model as (log(p/(1-p) ~ log\_value + age + race + poverty\_status), where p stands for the probability of being overweight/obese. As we knew before, the association between phthalates and obesity might be modified by gender, thus, we reported the results stratified by gender.
+There are lots of risk factors that are associated with obesity. We defined a categorical variable, where being overweight/obese was 1 and being normal weight/underweight was 0. And then we fitted a logistic regression model as (log(p/(1-p)) ~ log\_value + age + race + poverty\_status), where p stands for the probability of being overweight/obese. As we knew before, the association between phthalates and obesity might be modified by gender, thus, we reported the results stratified by gender.
 
 ``` r
 ## fit the model in children
