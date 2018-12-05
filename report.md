@@ -13,23 +13,33 @@ Motivation
 Related works
 -------------
 
--   Papers:
+-   papers:
 
-1.  [Phthalates and Their Alternatives: Health and Environmental Concerns](http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf)
-2.  [Gender- and Age-Specific Relationships Between Phthalate Exposures and Obesity in Shanghai Adults](https://doi.org/10.1007/s00244-017-0441-6)
-3.  [Developmental Effects of Endocrine-disrupting Chemicals in Wildlife and Humans](https://doi.org/10.1289/ehp.93101378)
-4.  [DI-2-Ethylhexyl Phthalate and Endocrine Disruption: A Review](https://doi.org/10.2174/1568008043340017)
-5.  [Phthalates Impact Human Health: Epidemiological Evidences and Plausible Mechanism of Action](https://doi.org/10.1016/j.jhazmat.2017.06.036)
-6.  [Phthalate Exposure and Childhood Obesity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/)
-7.  [Endocrine Disruptors and Obesity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/)
+1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
 
--   Websites:
+2.<https://doi.org/10.1007/s00244-017-0441-6>
 
-1.  [Plasticisers Information Center](https://www.plasticisers.org)
-2.  [Global Health Observatory (GHO) Data](https://www.who.int/gho/ncd/risk_factors/overweight/en/)
-3.  [Definition; epidemiology; and etiology of obesity in children and adolescents](https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents)
-4.  [Bisphenol A (BPA): Use in Food Contact Application](https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm)
-5.  [Endocrine Disruptors](https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm)
+3.<https://doi.org/10.1289/ehp.93101378>
+
+4.<https://doi.org/10.2174/1568008043340017>
+
+5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
+
+6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
+
+7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
+
+-   websites:
+
+1.<https://www.plasticisers.org>
+
+2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/>
+
+3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
+
+4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
+
+5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
 
 Initial questions:
 ------------------
@@ -252,7 +262,7 @@ bar_1 =
     title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
-  )
+  ) + theme(plot.title = element_text(size = 10))
 
 bar_2 = 
   phthte_demo_bmx %>% 
