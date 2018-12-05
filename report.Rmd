@@ -610,10 +610,9 @@ Among children, there is no association between phthalate and obesity in females
 ### Discussion: 
 * What were your findings? Are they what you expect? 
 We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
-* What insights into the data can you make?
 
-* The obesity pandemic:
-Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
+* What insights into the data can you make?
+The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
 
 * The increasing plasticizer evidence:
 Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
