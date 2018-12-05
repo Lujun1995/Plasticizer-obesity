@@ -1,0 +1,111 @@
+---
+title: "Shiny Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(SASxport)
+library(patchwork)
+library(emmeans)
+library(scales)
+library(plotly)
+```
+
+```{r}
+read_file_data = function(data_category){
+  path = str_c("./data/", data_category, "/")
+  file_name = tibble(file_name = list.files(path))
+  file_name %>% 
+    mutate(map(str_c(path, file_name), ~read.xport(.x))) %>% 
+    unnest() 
+}
+
+phthte = read_file_data("PHTHTE")
+demo = read_file_data("DEMO")
+bmx = read_file_data("BMX")
+
+phthte_demo = inner_join(demo, phthte, by = "SEQN") 
+phthte_demo_bmx = inner_join(phthte_demo, bmx, by = "SEQN")
+
+phthte_demo_bmx =
+  phthte_demo_bmx %>% 
+  select(id = SEQN, gender = RIAGENDR, age = RIDAGEYR, race = RIDRETH3, income = INDFMPIR, 
+         bmi_cat = BMDBMIC, bmi = BMXBMI,MEP = URXMEP, MnBP = URXMBP, MiBP = URXMIB, 
+         MCPP = URXMC1, MBzP = URXMZP, MEHP = URXMHP, MEHHP = URXMHH, MEOHP = URXMOH) %>%
+  mutate(phthalate_all = MEP + MnBP + MiBP + MCPP + MBzP + MEHP + MEHHP + MEHHP,
+         race = factor(race, levels = c(1, 2, 3, 4, 6, 7), 
+                       labels = c("mexican_american", "other_hispanic", "non_hispanic_white",
+                                  "non_hispanic_black", "non_hispanic_asian", "other_race")),
+         gender = factor(gender, levels = c(1, 2), labels = c("male", "female")),
+         bmi_cat = factor(bmi_cat, levels = c(1, 2, 3, 4), 
+                          labels = c("underweight", "normal weight", "Overweight","obese")),
+         age_status = ifelse(age >= 2 & age <= 19, 1, 2),
+         age_status = factor(age_status, levels = c(1, 2), 
+                          labels = c("children", "adults")),
+         poverty_status = ifelse(income >= 1, 2, 1), 
+         poverty_status = factor(poverty_status, levels = c(1, 2), 
+                                 labels = c("poverty", "nonpoverty"))) %>%
+  filter(!is.na(poverty_status)) %>% 
+  filter(!is.na(phthalate_all)) %>% 
+  gather(key = "phthalate", value = "concentrate", MEP:phthalate_all) %>% 
+  mutate(log_value = log(concentrate)) %>% 
+  select(-income)
+```
+
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+phthalate = c("MEP", "MnBP", "MiBP", "MCPP", "MBzP", "MEHP", "MEHHP", "MEOHP")
+subgroup = c("age_status", "gender", "race", "poverty_status")
+
+# selectInput widget
+selectInput("phthalate_choice", label = h3("Select phthalate"),
+            choices = phthalate, selected = "MEP")
+
+selectInput("subgroup_choice", label = h3("Select subgroup"),
+            choices = subgroup, selected = "race")
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+renderPlotly({
+  phthte_demo_bmx %>% 
+  filter(phthalate == input$phthalate_choice) %>% 
+  ggplot(aes_string("log_value", "bmi", fill = input$subgroup_choice)) + 
+  geom_smooth(aes_string(color = input$subgroup_choice))
+})
+```
+
+### Chart B
+
+```{r}
+renderPlotly({
+  phthte_demo_bmx %>% 
+  filter(phthalate != "phthalate_all") %>% 
+  group_by(age_status, phthalate) %>% 
+  summarize(mean = mean(concentrate)) %>% 
+  ggplot(aes(x = age_status, y = mean, fill = phthalate)) + 
+  geom_bar(position = "fill",stat = "identity", width = 0.4) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_brewer(palette = "Pastel2") +
+  labs(
+    x = "Age status",
+    y = NULL
+  ) +
+    guides(fill = FALSE)
+})
+```
+
+

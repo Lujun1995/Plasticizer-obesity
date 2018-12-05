@@ -34,7 +34,7 @@ Is this health crisis fully due to the diet? First fat and now sugar have been b
 ## Related works
 * Papers:
 
-1. [Phthalates and Their Alternatives: Health and Environmental Concerns] [1]11
+1. [Phthalates and Their Alternatives: Health and Environmental Concerns] [1]
 2. [Gender- and Age-Specific Relationships Between Phthalate Exposures and Obesity in Shanghai Adults] [2]
 3. [Developmental Effects of Endocrine-disrupting Chemicals in Wildlife and Humans] [3]
 4. [DI-2-Ethylhexyl Phthalate and Endocrine Disruption: A Review] [4]
@@ -235,7 +235,6 @@ We computed a few summary statistics and checked whether there are enough sample
 bar_1 = 
   phthte_demo_bmx %>% 
   filter(phthalate != "phthalate_all") %>% 
-  mutate(race = factor(race, levels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race"), labels = c("Mexican American", "Other Hispanic", "Non Hispanic White", "Non Hispanic Black", "Non Hispanic Asian", "Other race"))) %>% 
   group_by(race, phthalate) %>% 
   summarize(mean = mean(concentrate)) %>% 
   ggplot(aes(x = race, y = mean, fill = phthalate)) + 

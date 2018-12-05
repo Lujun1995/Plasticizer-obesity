@@ -15,7 +15,7 @@ Related works
 
 -   Papers:
 
-1.  [Phthalates and Their Alternatives: Health and Environmental Concerns](http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf)11
+1.  [Phthalates and Their Alternatives: Health and Environmental Concerns](http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf)
 2.  [Gender- and Age-Specific Relationships Between Phthalate Exposures and Obesity in Shanghai Adults](https://doi.org/10.1007/s00244-017-0441-6)
 3.  [Developmental Effects of Endocrine-disrupting Chemicals in Wildlife and Humans](https://doi.org/10.1289/ehp.93101378)
 4.  [DI-2-Ethylhexyl Phthalate and Endocrine Disruption: A Review](https://doi.org/10.2174/1568008043340017)
