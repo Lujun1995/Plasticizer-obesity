@@ -315,7 +315,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among children and adults and among different race groups.
+We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different between different gender and age groups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -348,7 +348,7 @@ p1_density + p2_density + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
-As the distribution of the sum-total exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
+As the distribution of the sum-total phthalate exposure is extremely right skewed, we used log(sum-total exposure) (`log_value`) to do subsequent analyses.
 
 Violin plots of log(sum-total exposure)
 ---------------------------------------
@@ -392,7 +392,7 @@ poverty_status_dist =
   geom_violin() +
   stat_summary(fun.y = median, geom = "point", size = 1) +
   labs(
-    x = "Poverty_statuse",
+    x = "Poverty_status",
     y = "Log(sum-total exposure)",
     title = "Distribution of log(total exporsure) in different subpopulations"
     ) +
