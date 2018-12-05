@@ -24,7 +24,7 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
 ## Motivation
-
+Our group first meant to fo a project about obesity. But then we found it not fascinating enough and decided to switch it to project about plasticizer polution influencing the obesity of population.
 * The obesity pandemic:
 Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
 
