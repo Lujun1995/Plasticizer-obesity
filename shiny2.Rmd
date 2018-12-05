@@ -1,5 +1,5 @@
 ---
-title: "Shiny Dashboard"
+title: "Phthalate Metabolites Exposure Distribution Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -77,34 +77,34 @@ selectInput("subgroup_choice", label = h3("Select subgroup"),
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Chart A
+### Violin plots of log(phthalate metabolite concentrate) by subgroups
 
 ```{r}
 renderPlotly({
   phthte_demo_bmx %>% 
   filter(phthalate == input$phthalate_choice) %>% 
-  ggplot(aes_string("log_value", "bmi", fill = input$subgroup_choice)) + 
-  geom_smooth(aes_string(color = input$subgroup_choice))
+  ggplot(aes_string(input$subgroup_choice, "log_value", fill = input$subgroup_choice)) + 
+  geom_violin(width = 0.1) +
+  stat_summary(fun.y = median, geom = "point", size = 1, fill = "black") +
+  theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
+  scale_fill_brewer(palette = "Pastel2") +
+  theme_set(theme_bw())
 })
 ```
 
-### Chart B
+### Barplots of phthalate metabolite concentrate mean by subgroups
 
 ```{r}
 renderPlotly({
   phthte_demo_bmx %>% 
-  filter(phthalate != "phthalate_all") %>% 
-  group_by(age_status, phthalate) %>% 
-  summarize(mean = mean(concentrate)) %>% 
-  ggplot(aes(x = age_status, y = mean, fill = phthalate)) + 
-  geom_bar(position = "fill",stat = "identity", width = 0.4) +
-  scale_y_continuous(labels = percent_format()) +
+  filter(phthalate == input$phthalate_choice) %>% 
+  group_by_(input$subgroup_choice) %>% 
+  summarize(concentrate_mean = mean(concentrate)) %>% 
+  ggplot(aes_string(input$subgroup_choice, "concentrate_mean", fill = input$subgroup_choice)) + 
+  geom_bar(stat = "identity", width = 0.4) +
+  theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
   scale_fill_brewer(palette = "Pastel2") +
-  labs(
-    x = "Age status",
-    y = NULL
-  ) +
-    guides(fill = FALSE)
+  theme_set(theme_bw())
 })
 ```
 
