@@ -245,7 +245,7 @@ bar_1 =
     title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
-  )
+  ) + theme(plot.title = element_text(size = 10))
 
 bar_2 = 
   phthte_demo_bmx %>% 
