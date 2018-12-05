@@ -179,7 +179,7 @@ The final dataset contains data for 8 urinary phthalate metabolites and related 
 -   `bmi`: Body mass index (kg/m\*\*2)
 -   `bmi_cat`: BMI Category (only for children/youth)
 -   `age_cat`: Child or adult
--   `phthalate`: Different chemical components as phthalates and the sum-total exposure
+-   `phthalate`: Type of phthalate
 -   `concentrate`: Concentration of the components
 -   `log_value`: log value of the concentration
 
@@ -250,6 +250,7 @@ Percent contribution of individual phthalates to the sum-total exposure
 bar_1 = 
   phthte_demo_bmx %>% 
   filter(phthalate != "phthalate_all") %>% 
+  mutate(race = factor(race, levels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race"), labels = c("Mexican American", "Other Hispanic", "Non Hispanic White", "Non Hispanic Black", "Non Hispanic Asian", "Other race"))) %>% 
   group_by(race, phthalate) %>% 
   summarize(mean = mean(concentrate)) %>% 
   ggplot(aes(x = race, y = mean, fill = phthalate)) + 
@@ -258,7 +259,7 @@ bar_1 =
   theme(axis.text.x = element_text(angle = 10, hjust = 1)) +
   scale_fill_brewer(palette = "Pastel2") +
   labs(
-    title = "Percent contribution of individual phthalates to the sum-total exposure",
+    title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
   )
