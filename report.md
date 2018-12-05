@@ -518,7 +518,7 @@ p1_race + (p2_poverty + p3_gender) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-Plots above show least square means and 95% confidence intervals of log(sum-total exposure) by race, poverty status and gender. (Least square means are means for groups that are adjusted for other terms in the model)
+Plots above show least square means of log(sum-total exposure) of groups by race, poverty status and gender, and their 95% confidence intervals. Least square means are means for groups that are adjusted for other terms in the model. In this case, least square means are means of log(sum-total exposure) of subgroups, adjusting for all predictors in the model except for the predictor of interest. For example, least square mean of log(sum-total exposure) of males is the mean log(sum-total exposure) value for male, adjusting for race, bmi, and poverty status.
 
 -   Compared to other race groups, levels of the sum-total exposure were significantly higher in non hispanic blacks.
 -   Compared to the group who are living in nonpoverty, levels of the sum-total exposure were significantly higher in the group who are living in poverty.
