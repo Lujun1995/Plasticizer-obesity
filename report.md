@@ -6,9 +6,9 @@ Jun Lu, Yun He, Chu Yu, Chunxiao Zhai, Haoran Hu
 Motivation
 ----------
 
-Our group first meant to fo a project about obesity. But then we found it not fascinating enough and decided to switch it to project about plasticizer polution influencing the obesity of population. \* The obesity pandemic: Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
+Reason about topic change: Our group first wanted to work on the topic of obesity. However, the datasets we found weren't able to meet our goals. And we also found the topic not fascinating enough. Thus, we decided to switch our topic to plasticizer pollution and explore its effect on obesity as well.
 
--   The increasing plasticizer evidence: Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
+Plasticizers, mainly phthalates, can interrupt the endocrine system even at low exposure levels, and there is evidence of plasticizers depositing in animal brains. Concerns have been rising in pediatricians and scientists. Obesity, which is a major public health problem across the world, is also associated with plasticizer exposure. Fat at first and now sugar have been blamed for causing obesity, while increasing evidence shows that plasticizer pollution is also playing an important role. However, effects of plasticizers on bodyweight within different age and gender groups are different. With more detailed monitoring data on plasticizer exposure available at NHANES datasets, we can now explore the relationship between body weight and plasticizer exposure.
 
 Related works
 -------------
@@ -46,7 +46,7 @@ All data were retrieved from the the [National Health and Nutrition Examination 
 
 We downloaded demographics data ([DEMO2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT), [DEMO2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT) and [DEMO2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XPT)), phthalates metabolites data ([PHTHTE2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/PHTHTE_G.XPT), [PHTHTE2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/PHTHTE_H.XPT) and [PHTHTE2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/PHTHTE_I.XPT)) and body measures data ([BMX2011-2012](https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BMX_G.XPT), [BMX2013-2014](https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/BMX_H.XPT) and [BMX2015-2016](https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT)) into three local files.
 
-Variables used in demographics data:
+Variables selected from the demographics dataset:
 
 -   `SEQN`: Respondent sequence number
 -   `RIAGENDR`: Gender
@@ -54,7 +54,7 @@ Variables used in demographics data:
 -   `RIDRETH3`: Race and Hispanic origin information, with Non-Hispanic Asian Category
 -   `INDFMPIR`: Ratio of family income to poverty
 
-Variables used in phthalates metabolites data:
+Variables selected from the phthalates metabolites dataset:
 
 -   `SEQN`: Respondent sequence number
 -   `URXMEP`: Mono-ethyl phthalate (ng/mL)
@@ -66,10 +66,10 @@ Variables used in phthalates metabolites data:
 -   `URXMHH`: Mono-(2-ethyl-5-hydroxyhexyl) phthalate (ng/mL)
 -   `URXMOH`: Mono-(2-ethyl-5-oxohexyl) phthalate (ng/mL)
 
-Variables used in body measures data
+Variables selected from the body measures dataset:
 
 -   `SEQN`: Respondent sequence number
--   `BMXBMI`: Body Mass Index (kg/m\*\*2)
+-   `BMXBMI`: Body Mass Index (kg/m^2)
 -   `BMDBMIC`: BMI Category - Children/Youth
 
 Get the data
@@ -96,7 +96,7 @@ if (!file.exists("data")) {
 }
 ```
 
-We created a function (`download_nhanes`) to download data in NHANES according to the year and data category. Then we used this function and `map` to download demographics data, phthalates metabolites data and body measures data from 2011 to 2016 into three local files.
+We created a function (`download_nhanes`) to download NHANES data from three different survey years, which are '2011-2012', '2013-2014' and '2015-2016'. And we downloaded data on demographics, body measures and phthalates metabolites using this function and `map` into three local files.
 
 Read and clean the data
 -----------------------
@@ -156,11 +156,11 @@ str(phthte_demo_bmx)
     ##  $ concentrate   : num  10 7.4 4.3 25 115.8 ...
     ##  $ log_value     : num  2.3 2 1.46 3.22 4.75 ...
 
-We created a function (`read_file_data`) to read and combine data with one document. And we applied this function to three files and got integrated demographics data, phthalates metabolites data and body measures data from 2011 to 2016 respectively. Then we used `inner_join` to integrate three datasets by `SEQN`.
+We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file where we had the NHANES data downloaded and finally got three datasets with integrated demographics data, phthalates metabolites data and body measures data ranging from 2011 to 2016, respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
 
-We selected variables of interest and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, the total exposure (`phthte_all`) was calculated as the sum of exposure for each of the eight phthalates. Then we used `gather` to go from wide format to long format. We took log transformation of `concentrate` to create `log_value`.
+We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalates metabolites. Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
 
-The final dataset contains data for 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains 73341 observations and 11 variables.
+The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains 73341 observations and 11 variables.
 
 -   `id`: Respondent sequence number
 -   `gender`: Gender
@@ -240,7 +240,6 @@ Percent contribution of individual phthalates to the sum-total exposure
 bar_1 = 
   phthte_demo_bmx %>% 
   filter(phthalate != "phthalate_all") %>% 
-  mutate(race = factor(race, levels = c("mexican_american", "other_hispanic", "non_hispanic_white", "non_hispanic_black", "non_hispanic_asian", "other_race"), labels = c("Mexican American", "Other Hispanic", "Non Hispanic White", "Non Hispanic Black", "Non Hispanic Asian", "Other race"))) %>% 
   group_by(race, phthalate) %>% 
   summarize(mean = mean(concentrate)) %>% 
   ggplot(aes(x = race, y = mean, fill = phthalate)) + 
@@ -305,7 +304,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of individual phthalates to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different between different gender and age groups.
+We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among different gender and age groups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -673,4 +672,15 @@ Among children, there is no association between phthalate and obesity in females
 ### Discussion:
 
 -   What were your findings? Are they what you expect? We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
--   What insights into the data can you make?
+
+-   What insights into the data can you make? The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
+
+The obesogen effect on bodyweight in girls is not significant might be a result from confounding by the endocrine disrupting chemicals’ (EDCs) effect in precocious puberty.
+
+Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
+
+The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
+
+-   The increasing plasticizer evidence: Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
+
+reference: 1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
