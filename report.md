@@ -531,6 +531,8 @@ In this part, we tried to explore the association between the sum-total phthalat
 
 ### Explore the association between the phthalate exposure and BMI
 
+We first explored the association between phthalates and obesity by making a scatteplot of BMI vs log(sum-total exposure), and then fitted a simple linear regression.
+
 ``` r
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
@@ -571,9 +573,11 @@ phth_obese_children/phth_obese_adult
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
-Plots above show a positive association of phthalate and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
+Plots above show a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
 
 ### Fit the GLM model
+
+There are lots of risk factors that are associated with obesity. We defined a categorical variable, where being overweight/obese was 1 and being normal weight/underweight was 0. And then we fitted a logistic regression model as (log(p/(1-p)) ~ log\_value + age + race + poverty\_status), where p stands for the probability of being overweight/obese. As we knew before, the association between phthalates and obesity might be modified by gender, thus, we reported the results stratified by gender.
 
 ``` r
 ## fit the model in children
@@ -666,12 +670,16 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
 | adult    | 1.18(1.09, 1.29) | 1.11(1.02, 1.2)  |
 | children | 1(0.89, 1.11)    | 1.15(1.02, 1.29) |
 
-The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender.
+The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model.
 
 Among adults, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status.
 
-Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status.
+Among children, there is no association between phthalates and obesity in females statistically. While in males, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status.
 
+Conclusion
+----------
+
+<<<<<<< HEAD
 Conclusion
 ----------
 
@@ -684,6 +692,17 @@ Discussion
 
 We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
 
+=======
+-   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
+-   Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
+-   Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically.
+
+Discussion
+----------
+
+We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
+
+>>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
 The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
 
 The obesogen effect on bodyweight in girls is not significant might be a result from confounding by the endocrine disrupting chemicals’ (EDCs) effect in precocious puberty.
@@ -691,3 +710,10 @@ The obesogen effect on bodyweight in girls is not significant might be a result 
 Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
+<<<<<<< HEAD
+=======
+
+Reference:
+
+1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
+>>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
