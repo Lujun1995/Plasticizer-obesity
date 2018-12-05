@@ -24,43 +24,45 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
 ## Motivation
-
+Our group first meant to fo a project about obesity. But then we found it not fascinating enough and decided to switch it to project about plasticizer polution influencing the obesity of population.
 * The obesity pandemic:
 Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
 
 * The increasing plasticizer evidence:
 Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
 
-- **theme change:** Our group at first meant to do a project about obesity. But then we found it not fascinating enough and decided to switch theme to plasticizer pollution influencing the obesity of population.
-
 ## Related works
-* papers:
+* Papers:
 
-1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
+1. [Phthalates and Their Alternatives: Health and Environmental Concerns] [1]11
+2. [Gender- and Age-Specific Relationships Between Phthalate Exposures and Obesity in Shanghai Adults] [2]
+3. [Developmental Effects of Endocrine-disrupting Chemicals in Wildlife and Humans] [3]
+4. [DI-2-Ethylhexyl Phthalate and Endocrine Disruption: A Review] [4]
+5. [Phthalates Impact Human Health: Epidemiological Evidences and Plausible Mechanism of Action] [5]
+6. [Phthalate Exposure and Childhood Obesity] [6]
+7. [Endocrine Disruptors and Obesity] [7]
 
-2.<https://doi.org/10.1007/s00244-017-0441-6>
+[1]: <http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
+[2]: <https://doi.org/10.1007/s00244-017-0441-6>
+[3]: <https://doi.org/10.1289/ehp.93101378>
+[4]: <https://doi.org/10.2174/1568008043340017>
+[5]: <https://doi.org/10.1016/j.jhazmat.2017.06.036>
+[6]: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
+[7]: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
 
-3.<https://doi.org/10.1289/ehp.93101378>
+* Websites:
 
-4.<https://doi.org/10.2174/1568008043340017>
+1. [Plasticisers Information Center] [8]
+2. [Global Health Observatory (GHO) Data] [9]
+3. [Definition; epidemiology; and etiology of obesity in children and adolescents] [10]
+4. [Bisphenol A (BPA): Use in Food Contact Application] [11]
+5. [Endocrine Disruptors] [12]
 
-5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
-
-6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
-
-7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
-
-* websites:
-
-1.<https://www.plasticisers.org>
-
-2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/>
-
-3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
-
-4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
-
-5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
+[8]: <https://www.plasticisers.org>
+[9]: <https://www.who.int/gho/ncd/risk_factors/overweight/en/>
+[10]: <https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
+[11]: <https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
+[12]: <https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
 
 ## Initial questions: 
 * Are people exposed at the same level? Who has been exposed most?
@@ -71,17 +73,17 @@ Is this health crisis fully due to the diet? First fat and now sugar have been b
 ## Data sources
 All data were retrieved from the the [National Health and Nutrition Examination Survey](https://www.cdc.gov/nchs/nhanes/index.htm). The National Health and Nutrition Examination Survey (NHANES) is a program of studies designed to assess the health and nutritional status of adults and children in the United States. 
 
-We downloaded demographics data ([DEMO2011-2012][1], [DEMO2013-2014][2] and [DEMO2015-2016][3]), phthalates metabolites data ([PHTHTE2011-2012][4], [PHTHTE2013-2014][5] and [PHTHTE2015-2016][6]) and body measures data ([BMX2011-2012][7], [BMX2013-2014][8] and [BMX2015-2016][9]) into three local files.
+We downloaded demographics data ([DEMO2011-2012][13], [DEMO2013-2014][14] and [DEMO2015-2016][15]), phthalates metabolites data ([PHTHTE2011-2012][16], [PHTHTE2013-2014][17] and [PHTHTE2015-2016][18]) and body measures data ([BMX2011-2012][19], [BMX2013-2014][20] and [BMX2015-2016][21]) into three local files.
 
-[1]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT
-[2]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT
-[3]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XPT
-[4]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/PHTHTE_G.XPT
-[5]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/PHTHTE_H.XPT
-[6]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/PHTHTE_I.XPT
-[7]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BMX_G.XPT
-[8]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/BMX_H.XPT
-[9]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT
+[13]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/DEMO_G.XPT
+[14]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/DEMO_H.XPT
+[15]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/DEMO_I.XPT
+[16]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/PHTHTE_G.XPT
+[17]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/PHTHTE_H.XPT
+[18]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/PHTHTE_I.XPT
+[19]:https://wwwn.cdc.gov/Nchs/Nhanes/2011-2012/BMX_G.XPT
+[20]:https://wwwn.cdc.gov/Nchs/Nhanes/2013-2014/BMX_H.XPT
+[21]:https://wwwn.cdc.gov/Nchs/Nhanes/2015-2016/BMX_I.XPT
 
 
 Variables used in demographics data:
@@ -245,7 +247,7 @@ bar_1 =
     title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
-  ) + theme(plot.title = element_text(size = 10))
+  )
 
 bar_2 = 
   phthte_demo_bmx %>% 

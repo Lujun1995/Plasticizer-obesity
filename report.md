@@ -6,40 +6,30 @@ Jun Lu, Yun He, Chu Yu, Chunxiao Zhai, Haoran Hu
 Motivation
 ----------
 
--   The obesity pandemic: Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
+Our group first meant to fo a project about obesity. But then we found it not fascinating enough and decided to switch it to project about plasticizer polution influencing the obesity of population. \* The obesity pandemic: Cardio-cerebralvascular diseases have become the leading cause of death worldwide (with ischemic heart disease ranked No.1 and stroke ranked No.3 in 2017), in which diabetes and obesity are the top risk factors along with tobacco use. Disability and early death due to obesity and overweight have increased by 28.9% in the US from 1990 to 2016. In the mean time, obesity and overweight rate have been rapidly increasing in developing countries. Globally, in 2016, 39% of women and 39% of men aged 18 and over were overweight.
 
 -   The increasing plasticizer evidence: Is this health crisis fully due to the diet? First fat and now sugar have been blamed for causing obesity but increasing evidence have been found that pollution is playing an important role. Plasticizers or mainly phthalates have been found to interrupt endocrine system at very low level of exposure, concerns have been rising in pediatricians and scientists. However, suspected act like estrogen agonist in human body, conclusions of how plasticizers affect bodyweight in populations of different age and genders do not always agree. With latest evidence of plasticizers depositing in human brain and more detailed exposure monitoring data of plasticizer exposure, we want to explore the relationship between body weight and plasticizer exposure in the latest NHANES datasets.
 
 Related works
 -------------
 
--   papers:
+-   Papers:
 
-1.<http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf>
+1.  [Phthalates and Their Alternatives: Health and Environmental Concerns](http://ec.europa.eu/environment/aarhus/pdf/35/Annex_11_report_from_Lowell_Center.pdf)11
+2.  [Gender- and Age-Specific Relationships Between Phthalate Exposures and Obesity in Shanghai Adults](https://doi.org/10.1007/s00244-017-0441-6)
+3.  [Developmental Effects of Endocrine-disrupting Chemicals in Wildlife and Humans](https://doi.org/10.1289/ehp.93101378)
+4.  [DI-2-Ethylhexyl Phthalate and Endocrine Disruption: A Review](https://doi.org/10.2174/1568008043340017)
+5.  [Phthalates Impact Human Health: Epidemiological Evidences and Plausible Mechanism of Action](https://doi.org/10.1016/j.jhazmat.2017.06.036)
+6.  [Phthalate Exposure and Childhood Obesity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/)
+7.  [Endocrine Disruptors and Obesity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/)
 
-2.<https://doi.org/10.1007/s00244-017-0441-6>
+-   Websites:
 
-3.<https://doi.org/10.1289/ehp.93101378>
-
-4.<https://doi.org/10.2174/1568008043340017>
-
-5.<https://doi.org/10.1016/j.jhazmat.2017.06.036>
-
-6.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4114051/>
-
-7.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5359373/>
-
--   websites:
-
-1.<https://www.plasticisers.org>
-
-2.<https://www.who.int/gho/ncd/risk_factors/overweight/en/>
-
-3.<https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents>
-
-4.<https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
-
-5.<https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
+1.  [Plasticisers Information Center](https://www.plasticisers.org)
+2.  [Global Health Observatory (GHO) Data](https://www.who.int/gho/ncd/risk_factors/overweight/en/)
+3.  [Definition; epidemiology; and etiology of obesity in children and adolescents](https://www.uptodate.com/contents/definition-epidemiology-and-etiology-of-obesity-in-children-and-adolescents)
+4.  [Bisphenol A (BPA): Use in Food Contact Application](https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm)
+5.  [Endocrine Disruptors](https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm)
 
 Initial questions:
 ------------------
@@ -262,7 +252,7 @@ bar_1 =
     title = "Percent contribution of each type of phthalates to the sum-total phthalates exposure",
     x = "Race",
     y = "Percent contribution"
-  ) + theme(plot.title = element_text(size = 10))
+  )
 
 bar_2 = 
   phthte_demo_bmx %>% 
