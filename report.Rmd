@@ -24,7 +24,6 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 ```
 
 ## Motivation
-
 Plasticizers, mainly phthalates, can interrupt the endocrine system even at low exposure levels, and there is evidence of plasticizers depositing in animal brains. Concerns have been rising in pediatricians and scientists. Obesity, which is a major public health problem across the world, is also associated with plasticizer exposure. Fat at first and now sugar have been blamed for causing obesity, while increasing evidence shows that plasticizer pollution is also playing an important role. However, effects of plasticizers on bodyweight within different age and gender groups are different. With more detailed monitoring data on plasticizer exposure available at NHANES datasets, we can now explore the relationship between body weight and plasticizer exposure.
 
 ## Topic change 
@@ -511,7 +510,7 @@ phth_obese_adult = phthte_adult %>%
 phth_obese_children/phth_obese_adult
 ```
 
-Plots above show a positive association of phthalate and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
+Plots above show a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
 
 ### Fit the GLM model
 
@@ -601,18 +600,17 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
   knitr::kable()
 ```
 
-The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalate and obesity might be modified by gender. 
+The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalates and obesity might be modified by gender. 
 
 Among adults, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status. 
 
-Among children, there is no association between phthalate and obesity in females statistically. While in males, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status. 
+Among children, there is no association between phthalates and obesity in females statistically. While in males, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 15% increase in the odds of being overweight/obese, adjusting for age, race and poverty status. 
 
 
 ## Conclusion
-* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population
-* Non hispanic blacks and people who are living in poverty tends to eposure to high levels of phthalates metabolites.
-* There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
-
+* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
+* Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
+* Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically. 
 
 ##  Discussion
 * What were your findings? Are they what you expect? 
