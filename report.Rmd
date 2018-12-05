@@ -25,9 +25,10 @@ theme_set(theme_bw() + theme(legend.position = "bottom"))
 
 ## Motivation
 
-Reason about topic change: Our group first wanted to work on the topic of obesity. However, the datasets we found weren't able to meet our goals. And we also found the topic not fascinating enough. Thus, we decided to switch our topic to plasticizer pollution and explore its effect on obesity as well.
-
 Plasticizers, mainly phthalates, can interrupt the endocrine system even at low exposure levels, and there is evidence of plasticizers depositing in animal brains. Concerns have been rising in pediatricians and scientists. Obesity, which is a major public health problem across the world, is also associated with plasticizer exposure. Fat at first and now sugar have been blamed for causing obesity, while increasing evidence shows that plasticizer pollution is also playing an important role. However, effects of plasticizers on bodyweight within different age and gender groups are different. With more detailed monitoring data on plasticizer exposure available at NHANES datasets, we can now explore the relationship between body weight and plasticizer exposure.
+
+## Topic change 
+Our group first wanted to work on the topic of obesity. However, the datasets we found weren't able to meet our goals. And we also found the topic not fascinating enough. Thus, we decided to switch our topic to plasticizer pollution and explore its effect on obesity as well.
 
 ## Related works
 * Papers:
@@ -62,7 +63,7 @@ Plasticizers, mainly phthalates, can interrupt the endocrine system even at low 
 [11]: <https://www.fda.gov/newsevents/publichealthfocus/ucm064437.htm>
 [12]: <https://www.niehs.nih.gov/health/topics/agents/endocrine/index.cfm>
 
-## Initial questions: 
+## Initial questions
 * Are people exposed at the same level? Who has been exposed most?
 * Are distributions of different types of plasticizers same in different populations?
 * Are people exposed at the same levels of plasticizers affected the same way? 
