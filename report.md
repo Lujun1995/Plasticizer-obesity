@@ -531,6 +531,8 @@ In this part, we tried to explore the association of the sum-total phthalate exp
 
 ### Explore the association between the phthalate exposure and obesity status
 
+We first explored the association between phthalates and obesity by making a scatteplot of BMI vs log(sum-total exposure), and then fitted a simple linear regression.
+
 ``` r
 phthte_children = phthte_demo_bmx %>% filter(age_cat == "children")
 
@@ -574,6 +576,8 @@ phth_obese_children/phth_obese_adult
 Plots above show a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
 
 ### Fit the GLM model
+
+There are lots of risk factors that are associated with obesity. We defined a categorical variable, where being overweight/obese was 1 and being normal weight/underweight was 0. And then we fitted a logistic regression model as (log(p/(1-p) ~ log\_value + age + race + poverty\_status), where p stands for the probability of being overweight/obese. As we knew before, the association between phthalates and obesity might be modified by gender, thus, we reported the results stratified by gender.
 
 ``` r
 ## fit the model in children
@@ -666,7 +670,7 @@ bind_rows(boy_OR, girl_OR, male_OR, female_OR) %>%
 | adult    | 1.18(1.09, 1.29) | 1.11(1.02, 1.2)  |
 | children | 1(0.89, 1.11)    | 1.15(1.02, 1.29) |
 
-The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model. We reported the results stratified by gender, as the association between phthalates and obesity might be modified by gender.
+The table above summarizes the change in odds of being overweight/obese due to increase in the magnitude of sum-total phthalate exposure, after adjusting for age, race and poverty status in the regression model.
 
 Among adults, for a one-unit increase in the sum-total phthalate exposure, we expect to see about 18% and 11% increase in the odds of being overweight/obese for females and males, respectively, adjusting for age, race and poverty status.
 
@@ -692,4 +696,6 @@ Laboratory studies find that early exposure to these pollutions can cause epigen
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
 
-reference: 1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
+Reference:
+
+1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
