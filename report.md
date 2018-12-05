@@ -99,7 +99,7 @@ if (!file.exists("data")) {
 }
 ```
 
-We created a function (`download_nhanes`) to download NHANES data from three different survey years, which are '2011-2012', '2013-2014' and '2015-2016'. And we downloaded data on demographics, body measures and phthalates metabolites using this function and `map` into three local files.
+We created a function (`download_nhanes`) to download data in NHANES. Then we used this function and `map` to download demographics data, phthalates metabolites data and body measures data from 2011 to 2016 into three local files (PHTHTE, DEMO and BMX).
 
 Read and clean the data
 -----------------------
@@ -159,7 +159,7 @@ str(phthte_demo_bmx)
     ##  $ concentrate   : num  10 7.4 4.3 25 115.8 ...
     ##  $ log_value     : num  2.3 2 1.46 3.22 4.75 ...
 
-We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file where we had the NHANES data downloaded and finally got three datasets with integrated demographics data, phthalates metabolites data and body measures data ranging from 2011 to 2016, respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
+We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
 
 We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight . Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
 
@@ -307,7 +307,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among different gender and age groups.
+We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among different race and age groups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -418,7 +418,7 @@ race_dist
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-7-2.png" style="display: block; margin: auto;" />
 
-We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup. From violin plots, we found that there were between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
+We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup (black points in the violin plots shows median value). From violin plots, we found that there were between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
 
 LS means analysis
 -----------------
@@ -527,9 +527,9 @@ Plots above show least square means of log(sum-total exposure) of groups by race
 Obesity analysis
 ----------------
 
-In this part, we tried to explore the association of the sum-total phthalate exposure and the body mass index (BMI) and obesity outcome.
+In this part, we tried to explore the association between the sum-total phthalate exposure and the body mass index (BMI) / obesity outcome.
 
-### Explore the association between the phthalate exposure and obesity status
+### Explore the association between the phthalate exposure and BMI
 
 We first explored the association between phthalates and obesity by making a scatteplot of BMI vs log(sum-total exposure), and then fitted a simple linear regression.
 
@@ -679,6 +679,20 @@ Among children, there is no association between phthalates and obesity in female
 Conclusion
 ----------
 
+<<<<<<< HEAD
+Conclusion
+----------
+
+-   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population
+-   Non hispanic blacks and people who are living in poverty tends to be eposured to high levels of phthalates metabolites.
+-   There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
+
+Discussion
+----------
+
+We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
+
+=======
 -   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
 -   Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
 -   Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically.
@@ -688,6 +702,7 @@ Discussion
 
 We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
 
+>>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
 The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
 
 The obesogen effect on bodyweight in girls is not significant might be a result from confounding by the endocrine disrupting chemicals’ (EDCs) effect in precocious puberty.
@@ -695,7 +710,10 @@ The obesogen effect on bodyweight in girls is not significant might be a result 
 Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
+<<<<<<< HEAD
+=======
 
 Reference:
 
 1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
+>>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d

@@ -98,6 +98,5 @@ renderPlotly({
   geom_violin() +
   theme(axis.text.x = element_text(angle = 10, hjust = 1))
 })
+
 ```
-
-
