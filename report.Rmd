@@ -1,5 +1,5 @@
 ---
-title: "Report"
+title: "Analysis of plasticizer exposure patterns and effects of plasticizer on obesity"
 author: "Jun Lu, Yun He, Chu Yu, Chunxiao Zhai, Haoran Hu"
 date: "12/2/2018"
 output: github_document
@@ -181,11 +181,7 @@ str(phthte_demo_bmx)
 
 We created a function (`read_file_data`) to read and combine datasets within one file. Furthermore, we applied this function to each each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. After that, `inner_join` was used to integrate these three datasets by `SEQN`.
 
-<<<<<<< HEAD
-We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalates. Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`. 
-=======
 Additionally, we selected variables of interest, and converted `gender`, `race`, `bmi_cat` as well as `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalate metabolites. Afterwards, `gather` was utilized to aggregate data. We also took the log transformation on `concentrate` to create `log_value`. 
->>>>>>> 3e62a40cef03e04b8dd64945e2b22e4c3ff34740
 
 The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016, including `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
 
@@ -496,7 +492,7 @@ phth_obese_children = phthte_children %>%
   labs(
     x = "Log(sum-total exposure)",
     y = "Body mass index (BMI)",
-    title = "Association between the phthalate exposure and obesity status among children"
+    title = "Association between the phthalate exposure and BMI among children"
   ) +
   scale_color_brewer(palette = "Pastel2")
 
@@ -509,7 +505,7 @@ phth_obese_adult = phthte_adult %>%
   labs(
     x = "Log(sum-total exposure)",
     y = "Body mass index (BMI)",
-    title = "Association between the phthalate exposure and obesity status among adults"
+    title = "Association between the phthalate exposure and BMI among adults"
   ) +
   scale_color_brewer(palette = "Pastel2")
 
@@ -619,10 +615,8 @@ Among children, there is no association between phthalates and obesity in female
 * Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
 * Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
 * Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically. 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3e62a40cef03e04b8dd64945e2b22e4c3ff34740
+
 
 ##  Discussion
 
@@ -637,11 +631,4 @@ The obesogen effect on bodyweight in girls is not significant might be a result 
 Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.   
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
-<<<<<<< HEAD
 
-
-
-
-
-=======
->>>>>>> 3e62a40cef03e04b8dd64945e2b22e4c3ff34740
