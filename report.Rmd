@@ -181,7 +181,7 @@ str(phthte_demo_bmx)
 
 We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
 
-We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight . Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`. 
+We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalates. Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`. 
 
 The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains `r nrow(phthte_demo_bmx)` observations and `r ncol(phthte_demo_bmx)` variables.
 
@@ -612,18 +612,15 @@ Among children, there is no association between phthalates and obesity in female
 
 
 ## Conclusion
-<<<<<<< HEAD
-* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population
-* Non hispanic blacks and people who are living in poverty tends to be eposured to high levels of phthalates metabolites.
-* There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males. 
-
-=======
 * Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
 * Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
 * Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically. 
->>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
+
 
 ##  Discussion
+
+Phthalate exposure has been shown to vary by a number of demographic factors, including gender, race/ethnicity, and poverty status. People may have different levels of phthalate exposure due to different living habits.
+
 We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
 
 The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
@@ -634,12 +631,6 @@ Laboratory studies find that early exposure to these pollutions can cause epigen
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
 
-Reference:
-
-<<<<<<< HEAD
-=======
-1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
->>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
 
 
 
