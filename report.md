@@ -6,12 +6,12 @@ Jun Lu, Yun He, Chu Yu, Chunxiao Zhai, Haoran Hu
 Motivation
 ----------
 
-Plasticizers, mainly phthalates, can interrupt the endocrine system even at low exposure levels, and there is evidence of plasticizers depositing in animal brains. Concerns have been rising in pediatricians and scientists. Obesity, which is a major public health problem across the world, is also associated with plasticizer exposure. Fat at first and now sugar have been blamed for causing obesity, while increasing evidence shows that plasticizer pollution is also playing an important role. However, effects of plasticizers on bodyweight within different age and gender groups are different. With more detailed monitoring data on plasticizer exposure available at NHANES datasets, we can now explore the relationship between body weight and plasticizer exposure.
+Plasticizers, mainly phthalates, can interrupt the endocrine system even at low exposure levels, and there is evidence of plasticizers depositing in animal brains. Concerns have been rising in pediatricians and scientists. Obesity, which is a major public health problem across the world, is also associated with plasticizer exposure. Fat at first and now sugar have been blamed for causing obesity, while increasing evidence shows that plasticizer pollution is also playing an important role. However, effects of plasticizers on bodyweight within different age and gender groups are different. With more detailed monitoring data on plasticizer exposure available at NHANES datasets, we want to explore the relationship between body weight and plasticizer exposure.
 
 Topic change
 ------------
 
-Our group first wanted to work on the topic of obesity. However, the datasets we found weren't able to meet our goals. And we also found the topic not fascinating enough. Thus, we decided to switch our topic to plasticizer pollution and explore its effect on obesity as well.
+Our group first aimed to work on the topic of obesity. However, the datasets we found weren't able to meet our goals. And we also found the topic not fascinating enough. Thus, we decided to switch our topic to plasticizer pollution and explore its effect on obesity as well.
 
 Related works
 -------------
@@ -679,41 +679,26 @@ Among children, there is no association between phthalates and obesity in female
 Conclusion
 ----------
 
-<<<<<<< HEAD
-Conclusion
-----------
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD \* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population \* Non hispanic blacks and people who are living in poverty tends to be eposured to high levels of phthalates metabolites. \* There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
 
--   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population
--   Non hispanic blacks and people who are living in poverty tends to be eposured to high levels of phthalates metabolites.
--   There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
+======= \* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population. \* Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups. \* Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically. &gt;&gt;&gt;&gt;&gt;&gt;&gt; e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
 
 Discussion
 ----------
 
 We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
 
-=======
--   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
--   Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
--   Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically.
-
-Discussion
-----------
-
-We were expecting the plasticizers influence male population more for their lower baseline estrogen levels, but we found adult women are more influenced than men, and only male children are influenced.
-
->>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
 The difference in effects of plasticizers as obesogens are heterogeneous in the population, possibly by its multifaceted bioactivity as a selective estrogen receptor binder at different background level of estrogen or interaction with other hormonal axises.
 
 The obesogen effect on bodyweight in girls is not significant might be a result from confounding by the endocrine disrupting chemicals’ (EDCs) effect in precocious puberty.
 
-Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
+Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging research about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
-<<<<<<< HEAD
-=======
 
 Reference:
 
-1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/>
->>>>>>> e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+=================================
+
+1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/> &gt;&gt;&gt;&gt;&gt;&gt;&gt; e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
