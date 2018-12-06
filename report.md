@@ -159,11 +159,11 @@ str(phthte_demo_bmx)
     ##  $ concentrate   : num  10 7.4 4.3 25 115.8 ...
     ##  $ log_value     : num  2.3 2 1.46 3.22 4.75 ...
 
-We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
+We created a function (`read_file_data`) to read and combine datasets within one file. Furthermore, we applied this function to each each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. After that, `inner_join` was used to integrate these three datasets by `SEQN`.
 
-We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalate metabolites. Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
+Additionally, we selected variables of interest, and converted `gender`, `race`, `bmi_cat` as well as `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalate metabolites. Afterwards, `gather` was utilized to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
 
-The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains 73341 observations and 11 variables.
+The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016, including 73341 observations and 11 variables.
 
 -   `id`: Respondent sequence number
 -   `gender`: Gender
@@ -307,7 +307,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among different race and age groups.
+We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among the race and age subgroups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -418,12 +418,12 @@ race_dist
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-7-2.png" style="display: block; margin: auto;" />
 
-We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup (black points in the violin plots shows median value). From violin plots, we found that there were between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
+We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup (black points in the violin plots shows median value). From violin plots, it is found that there are between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in the plots.
 
 LS means analysis
 -----------------
 
-In order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
+What is more, in order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
 
 ### Fit a multilinear model
 
@@ -465,7 +465,7 @@ summary(multi_fit)
     ## Multiple R-squared:  0.07085,    Adjusted R-squared:  0.06971 
     ## F-statistic: 62.22 on 9 and 7344 DF,  p-value: < 2.2e-16
 
-We fitted a multilinear model (log\_value ~ age + gender + race + poverty\_status + bmi) and found that gender, race, poverty\_status and bmi are significant predictors in this model. And then we used this model to calculate least square means.
+We fitted a multilinear model (log\_value ~ age + gender + race + poverty\_status + bmi) and found that gender, race, poverty\_status and bmi are significant predictors in this model. This model was then used to calculate least square means.
 
 ### Compare least square means
 
@@ -679,15 +679,9 @@ Among children, there is no association between phthalates and obesity in female
 Conclusion
 ----------
 
-<<<<<<< HEAD
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD \* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among population \* Non hispanic blacks and people who are living in poverty tends to be eposured to high levels of phthalates metabolites. \* There is a positive association of phthalates and obesity among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
-
-======= \* Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population. \* Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups. \* Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically. &gt;&gt;&gt;&gt;&gt;&gt;&gt; e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
-=======
 -   Mono-ethyl phthalate (MEP) contributed most to the sum-total exposure among our study population.
 -   Non hispanic blacks and people who are living in poverty are at higher exposure levels of phthalates metabolites, compared to other groups.
 -   Phthalates and obesity are positively correlated among adults. And the association tends to be stronger in females than that in males. While among children, the positive correlation between phthalates and obesity is only observed among males, statistically.
->>>>>>> 26d514fa733aa77f07f51b7904a235502678356b
 
 Discussion
 ----------
@@ -698,16 +692,6 @@ The difference in effects of plasticizers as obesogens are heterogeneous in the 
 
 The obesogen effect on bodyweight in girls is not significant might be a result from confounding by the endocrine disrupting chemicals’ (EDCs) effect in precocious puberty.
 
-Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging research about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
+Laboratory studies find that early exposure to these pollutions can cause epigenetic modification and increase the risk of diseases for whole life. Our analysis did not include duration as an aspect of exposure due to limited data. Emerging researches about phthalates in nephrology and neurobiology have just started to illuminate more hazards we have never considered before.
 
 The plastic products have brought huge convenience to modern life but the aftermath they bring along is more than ocean pollution and the damage they cause is not only to animals but also to ourselves. How to further regulate the application of such chemicals in industry and mitigate the harm in population who have been exposed should be studied more carefully.
-<<<<<<< HEAD
-
-Reference:
-
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-=================================
-
-1.<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5615581/> &gt;&gt;&gt;&gt;&gt;&gt;&gt; e0e4572d71638aa8d63c6ee39eda1cbfad8aae4d
-=======
->>>>>>> 26d514fa733aa77f07f51b7904a235502678356b
