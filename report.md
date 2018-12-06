@@ -75,6 +75,11 @@ Variables selected from the body measures dataset:
 -   `BMXBMI`: Body Mass Index (kg/m^2)
 -   `BMDBMIC`: BMI Category - Children/Youth
 
+Packages used in this report
+----------------------------
+
+We used `tidyverse`, `tableone`, `SASxport`, `patchwork`, `emmeans` and `scales` packages in this report.
+
 Get the data
 ------------
 
