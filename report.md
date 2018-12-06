@@ -159,11 +159,15 @@ str(phthte_demo_bmx)
     ##  $ concentrate   : num  10 7.4 4.3 25 115.8 ...
     ##  $ log_value     : num  2.3 2 1.46 3.22 4.75 ...
 
-We created a function (`read_file_data`) to read and combine datasets within one file. And we applied this function to each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. Then we used `inner_join` to integrate these three datasets by `SEQN`.
+We created a function (`read_file_data`) to read and combine datasets within one file. Furthermore, we applied this function to each each file (PHTHTE, DEMO and BMX) and got an integrated demographics dataset, an integrated phthalates metabolites dataset and an integrated body measures dataset respectively. After that, `inner_join` was used to integrate these three datasets by `SEQN`.
 
+<<<<<<< HEAD
 We selected variables of interest, and converted `gender`, `race`, `bmi_cat` and `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalates. Then we used `gather` to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
+=======
+Additionally, we selected variables of interest, and converted `gender`, `race`, `bmi_cat` as well as `poverty_status` into factors. For each individual, total exposure (`phthte_all`) was calculated by adding the exposure of all eight phthalate metabolites. Afterwards, `gather` was utilized to aggregate data. We also took the log transformation on `concentrate` to create `log_value`.
+>>>>>>> 3e62a40cef03e04b8dd64945e2b22e4c3ff34740
 
-The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016. It contains 73341 observations and 11 variables.
+The final dataset contains data on 8 urinary phthalate metabolites and related information from 8149 participants in the National Health and Nutrition Examination Survey (NHANES) 2011–2016, including 73341 observations and 11 variables.
 
 -   `id`: Respondent sequence number
 -   `gender`: Gender
@@ -307,7 +311,7 @@ bar_1 + (bar_2 + bar_3 + bar_4) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among different race and age groups.
+We made barplots to show percent contribution of each phthalate metabolite to the sum-total exposure among different subgroups. We found that mono-ethyl phthalate (MEP) contributed most to the sum-total exposure. And percent contribution patterns are different among the race and age subgroups.
 
 Density plots of the sum-total exposure
 ---------------------------------------
@@ -418,12 +422,12 @@ race_dist
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-7-2.png" style="display: block; margin: auto;" />
 
-We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup (black points in the violin plots shows median value). From violin plots, we found that there were between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in violin plots.
+We stratified the study population on the basis of gender, poverty status, race and age, and made violin plots for each subgroup (black points in the violin plots shows median value). From violin plots, it is found that there are between-group differences in log(sum-total exposure) on the basis of race and poverty status. However, differences are not very obvious in the plots.
 
 LS means analysis
 -----------------
 
-In order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
+What is more, in order to compare log(sum-total exposure) value in different subgroups, we fitted a multilinear model and calculated least square means.
 
 ### Fit a multilinear model
 
@@ -465,7 +469,7 @@ summary(multi_fit)
     ## Multiple R-squared:  0.07085,    Adjusted R-squared:  0.06971 
     ## F-statistic: 62.22 on 9 and 7344 DF,  p-value: < 2.2e-16
 
-We fitted a multilinear model (log\_value ~ age + gender + race + poverty\_status + bmi) and found that gender, race, poverty\_status and bmi are significant predictors in this model. And then we used this model to calculate least square means.
+We fitted a multilinear model (log\_value ~ age + gender + race + poverty\_status + bmi) and found that gender, race, poverty\_status and bmi are significant predictors in this model. This model was then used to calculate least square means.
 
 ### Compare least square means
 
@@ -518,7 +522,7 @@ p1_race + (p2_poverty + p3_gender) + plot_layout(ncol = 1)
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-Plots above show least square means and 95% confidence intervals of log(sum-total exposure) by race, poverty status and gender. (Least square means are means for groups that are adjusted for other terms in the model)
+Plots above show least square means of log(sum-total exposure) of groups by race, poverty status and gender, and their 95% confidence intervals. Least square means are means for groups that are adjusted for other terms in the model. In this case, least square means are means of log(sum-total exposure) of subgroups, adjusting for all predictors in the model except for the predictor of interest. For example, least square mean of log(sum-total exposure) of males is the mean log(sum-total exposure) value for male, adjusting for race, bmi, and poverty status.
 
 -   Compared to other race groups, levels of the sum-total exposure were significantly higher in non hispanic blacks.
 -   Compared to the group who are living in nonpoverty, levels of the sum-total exposure were significantly higher in the group who are living in poverty.
@@ -573,7 +577,7 @@ phth_obese_children/phth_obese_adult
 
 <img src="report_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
-Plots above show a positive association of phthalates and BMI among both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
+Plots above show a positive association between phthalates and BMI in both children and adults. Among children, the association tends to be stronger in males than that in females. However, among adults, the association tends to be stronger in females than that in males.
 
 ### Fit the GLM model
 
